@@ -1,0 +1,14 @@
+{
+  "C_Cpp.errorSquiggles": "disabled",
+  "files.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true
+  },
+  "search.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true,
+    "**/Pods": true,
+    "**/.symlinks": true
+  },
+  "C_Cpp.intelliSenseEngine": "disabled"
+}

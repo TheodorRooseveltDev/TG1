@@ -1,0 +1,79 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.dart text
+*.yaml text
+*.yml text
+*.json text
+*.md text
+*.txt text
+*.xml text
+*.plist text
+
+# Flutter/Dart specific
+*.lock text
+*.g.dart linguist-generated=true
+*.freezed.dart linguist-generated=true
+*.mocks.dart linguist-generated=true
+
+# iOS specific
+*.pbxproj text
+*.strings text
+*.storyboard text
+*.xib text
+
+# Android specific
+*.gradle text
+*.properties text
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+
+# Archives
+*.zip binary
+*.tar binary
+*.7z binary
+*.dmg binary
+*.gz binary
+*.iso binary
+*.jar binary
+*.rar binary
+
+# Fonts
+*.ttf binary
+*.eot binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Executables
+*.exe binary
+*.out binary
+*.app binary
+*.deb binary
+*.dmg binary
+*.iso binary
+*.msi binary
+*.msm binary
+*.msp binary
+
+# Video
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+
+# Adobe
+*.pdf binary
+*.ai binary
+*.eps binary
+*.ps binary
+*.psd binary
