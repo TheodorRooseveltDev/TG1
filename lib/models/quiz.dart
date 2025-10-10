@@ -13,6 +13,18 @@ enum QuizCategory {
   const QuizCategory(this.title, this.description);
 }
 
+enum DifficultyLevel {
+  beginner('Beginner', 'New to the casino floor'),
+  intermediate('Intermediate', 'Building experience'),
+  advanced('Advanced', 'Seasoned professional'),
+  expert('Expert', 'Master dealer level');
+
+  final String title;
+  final String description;
+
+  const DifficultyLevel(this.title, this.description);
+}
+
 class Question {
   final String id;
   final String question;
@@ -64,17 +76,23 @@ class Quiz {
   final String id;
   final String title;
   final QuizCategory category;
+  final DifficultyLevel difficulty;
   final List<Question> questions;
   final int timeLimit; // in seconds
   final int passingScore;
+  final bool isLocked;
+  final int requiredScore; // Score needed to unlock this quiz
 
   Quiz({
     required this.id,
     required this.title,
     required this.category,
+    this.difficulty = DifficultyLevel.beginner,
     required this.questions,
     this.timeLimit = 600, // 10 minutes default
     this.passingScore = 70,
+    this.isLocked = false,
+    this.requiredScore = 0,
   });
 
   int get totalPoints => questions.fold(0, (sum, q) => sum + q.points);
@@ -87,11 +105,17 @@ class Quiz {
         (c) => c.name == json['category'],
         orElse: () => QuizCategory.general,
       ),
+      difficulty: DifficultyLevel.values.firstWhere(
+        (d) => d.name == (json['difficulty'] ?? 'beginner'),
+        orElse: () => DifficultyLevel.beginner,
+      ),
       questions: (json['questions'] as List)
           .map((q) => Question.fromJson(q as Map<String, dynamic>))
           .toList(),
       timeLimit: json['timeLimit'] as int? ?? 600,
       passingScore: json['passingScore'] as int? ?? 70,
+      isLocked: json['isLocked'] as bool? ?? false,
+      requiredScore: json['requiredScore'] as int? ?? 0,
     );
   }
 
@@ -100,9 +124,12 @@ class Quiz {
       'id': id,
       'title': title,
       'category': category.name,
+      'difficulty': difficulty.name,
       'questions': questions.map((q) => q.toJson()).toList(),
       'timeLimit': timeLimit,
       'passingScore': passingScore,
+      'isLocked': isLocked,
+      'requiredScore': requiredScore,
     };
   }
 }

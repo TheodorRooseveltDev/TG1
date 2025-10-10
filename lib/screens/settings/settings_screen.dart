@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/theme/app_theme.dart';
 import '../../providers/auth_provider.dart';
+import '../../providers/quiz_provider.dart';
 import '../legal/terms_screen.dart';
 import '../legal/privacy_policy_screen.dart';
 import '../wiki/wiki_screen.dart';
@@ -208,7 +209,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         _ProfileStat(
                           label: 'UNLOCKED',
-                          value: '${user?.unlockedQuizCount ?? 3}/38',
+                          value: '${user?.unlockedQuizCount ?? 3}/${context.read<QuizProvider>().allQuizzes.length}',
                         ),
                       ],
                     ),

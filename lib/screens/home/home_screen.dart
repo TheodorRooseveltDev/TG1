@@ -372,6 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDrawer(BuildContext context) {
     final authProvider = context.watch<AuthProvider>();
+    final quizProvider = context.watch<QuizProvider>();
     final user = authProvider.currentUser;
 
     return Drawer(
@@ -475,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 30,
                         color: AppTheme.primaryLight,
                       ),
-                      _buildStatItem('QUIZZES', '${user?.unlockedQuizCount ?? 3}/38'),
+                      _buildStatItem('QUIZZES', '${user?.unlockedQuizCount ?? 3}/${quizProvider.allQuizzes.length}'),
                     ],
                   ),
                 ],

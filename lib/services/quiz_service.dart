@@ -1,22 +1,56 @@
 import '../models/quiz.dart';
+import 'quiz_service_part1.dart';
+import 'quiz_service_part2.dart';
+import 'quiz_service_part3.dart';
+import 'quiz_service_part4.dart';
 
 class QuizService {
-  // Mock quiz data - in production, fetch from API
+  // Compile all quizzes from different parts
+  static final List<Quiz> _allQuizzes = [
+    // Dealer Basics (2 beginner)
+    ...dealerBasicsQuizzes,
+    // Card Handling (2: beginner, intermediate)
+    ...cardHandlingQuizzes,
+    // Chip Management (2: beginner, intermediate)
+    ...chipManagementQuizzes,
+    // Customer Service (2: beginner, intermediate)
+    ...customerServiceQuizzes,
+    // Game Rules (3: beginner, intermediate, advanced)
+    ...gameRulesQuizzes,
+    // Casino Protocol (3: beginner, intermediate, advanced)
+    ...casinoProtocolQuizzes,
+    // General Knowledge (3: beginner, intermediate, expert)
+    ...generalKnowledgeQuizzes,
+  ];
+
+  // Total: 17 quizzes across all categories and difficulty levels
   
   List<Quiz> getQuizzesByCategory(QuizCategory category) {
-    return _mockQuizzes.where((quiz) => quiz.category == category).toList();
+    return _allQuizzes.where((quiz) => quiz.category == category).toList();
   }
 
   Quiz? getQuizById(String id) {
     try {
-      return _mockQuizzes.firstWhere((quiz) => quiz.id == id);
+      return _allQuizzes.firstWhere((quiz) => quiz.id == id);
     } catch (e) {
       return null;
     }
   }
 
   List<Quiz> getAllQuizzes() {
-    return _mockQuizzes;
+    return _allQuizzes;
+  }
+
+  int getTotalQuizCount() {
+    return _allQuizzes.length;
+  }
+
+  List<Quiz> getQuizzesByDifficulty(DifficultyLevel difficulty) {
+    return _allQuizzes.where((quiz) => quiz.difficulty == difficulty).toList();
+  }
+
+  List<Quiz> getUnlockedQuizzes(int totalScore) {
+    return _allQuizzes.where((quiz) => totalScore >= quiz.requiredScore).toList();
   }
 
   Future<List<QuizResult>> getUserResults(String userId) async {
@@ -31,494 +65,4 @@ class QuizService {
     await Future.delayed(const Duration(milliseconds: 500));
     // Submit to API in production
   }
-
-  // Mock quiz data focused on casino dealer operations
-  static final List<Quiz> _mockQuizzes = [
-    Quiz(
-      id: 'dealer_basics_1',
-      title: 'Dealer Fundamentals',
-      category: QuizCategory.dealerBasics,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'db1',
-          question: 'What is the primary responsibility of a casino dealer?',
-          options: ['Entertaining guests', 'Managing the game and ensuring fair play', 'Counting cards', 'Selling chips'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.dealerBasics,
-          explanation: 'The dealer\'s primary responsibility is to manage the game professionally and ensure fair play for all participants.',
-          points: 10,
-        ),
-        Question(
-          id: 'db2',
-          question: 'What should a dealer do before starting their shift?',
-          options: ['Check social media', 'Count the chip tray and verify the table', 'Talk to other dealers', 'Arrange personal items'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.dealerBasics,
-          explanation: 'Dealers must count and verify the chip tray and ensure the table is properly set up before beginning their shift.',
-          points: 10,
-        ),
-        Question(
-          id: 'db3',
-          question: 'How should a dealer handle a player dispute?',
-          options: ['Argue with the player', 'Call a floor supervisor immediately', 'Ignore the situation', 'Ask other players to decide'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.dealerBasics,
-          explanation: 'When disputes arise, dealers should remain calm and call a floor supervisor to resolve the issue professionally.',
-          points: 10,
-        ),
-        Question(
-          id: 'db4',
-          question: 'What is the correct dealer posture at the table?',
-          options: ['Slouched and relaxed', 'Standing upright with proper hand positioning', 'Leaning on the table', 'Sitting casually'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.dealerBasics,
-          explanation: 'Dealers should maintain professional posture: standing upright with hands visible and properly positioned at all times.',
-          points: 10,
-        ),
-        Question(
-          id: 'db5',
-          question: 'When can a dealer take a break during their shift?',
-          options: ['Whenever they feel tired', 'Only at designated break times with proper relief', 'After every few hands', 'When no players are at the table'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.dealerBasics,
-          explanation: 'Dealers can only take breaks at designated times and must wait for a relief dealer to properly take over the table.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'card_handling_1',
-      title: 'Card Handling Techniques',
-      category: QuizCategory.cardHandling,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'ch1',
-          question: 'What is the proper way to shuffle cards as a dealer?',
-          options: ['Riffle shuffle only', 'Strip shuffle only', 'Casino-approved shuffle sequence (riffle, strip, riffle)', 'Any shuffle method is fine'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.cardHandling,
-          explanation: 'Dealers must follow the casino-approved shuffle sequence, typically including riffle shuffles and strip shuffles in a specific order.',
-          points: 10,
-        ),
-        Question(
-          id: 'ch2',
-          question: 'Why must dealers keep cards low to the table?',
-          options: ['It looks more professional', 'To prevent players from seeing the cards early', 'To prevent surveillance camera blind spots', 'Both B and C'],
-          correctAnswerIndex: 3,
-          category: QuizCategory.cardHandling,
-          explanation: 'Keeping cards low prevents players from seeing cards prematurely and ensures surveillance cameras can monitor all dealing actions.',
-          points: 10,
-        ),
-        Question(
-          id: 'ch3',
-          question: 'What should a dealer do if a card is accidentally exposed?',
-          options: ['Continue dealing normally', 'Follow house rules for exposed cards', 'Let the player keep it', 'Shuffle immediately'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.cardHandling,
-          explanation: 'When a card is exposed, dealers must follow specific house rules, which vary by game and casino policy.',
-          points: 10,
-        ),
-        Question(
-          id: 'ch4',
-          question: 'How should a dealer cut the deck after shuffling?',
-          options: ['Cut it themselves', 'Offer the cut card to a player', 'Skip cutting', 'Cut multiple times'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.cardHandling,
-          explanation: 'After shuffling, dealers should offer the cut card to a player, allowing them to cut the deck before play begins.',
-          points: 10,
-        ),
-        Question(
-          id: 'ch5',
-          question: 'What is the purpose of the "burn card" in many card games?',
-          options: ['To discard damaged cards', 'To prevent card counting and add security', 'To mark the end of the shoe', 'To keep the table neat'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.cardHandling,
-          explanation: 'Burning cards (discarding the top card) adds security by preventing players from tracking or predicting the next card.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'chip_management_1',
-      title: 'Chip Management Basics',
-      category: QuizCategory.chipManagement,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'cm1',
-          question: 'How should chips be stacked in the dealer tray?',
-          options: ['Randomly placed', 'By color in stacks of 20', 'All mixed together', 'In piles of 10'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.chipManagement,
-          explanation: 'Chips should be organized by color/denomination in stacks of 20 for easy counting and verification.',
-          points: 10,
-        ),
-        Question(
-          id: 'cm2',
-          question: 'What is "cutting cheques"?',
-          options: ['Destroying old chips', 'Breaking down chip stacks to make exact payouts', 'Designing new chips', 'Exchanging chips for cash'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.chipManagement,
-          explanation: 'Cutting cheques means breaking down chip stacks to create the exact amount needed for player payouts.',
-          points: 10,
-        ),
-        Question(
-          id: 'cm3',
-          question: 'How should a dealer handle a player buy-in?',
-          options: ['Take cash directly into the chip tray', 'Spread cash on table, call out amount, wait for supervisor approval, then exchange for chips', 'Give chips first, take cash later', 'Count privately'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.chipManagement,
-          explanation: 'Dealers must spread cash openly, announce the amount clearly, wait for floor approval, and only then exchange for chips under camera view.',
-          points: 10,
-        ),
-        Question(
-          id: 'cm4',
-          question: 'Why do dealers "splash the pot" when collecting losing bets?',
-          options: ['To show off their skills', 'To ensure cameras see all chips being collected', 'To confuse players', 'It\'s not a recommended practice'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.chipManagement,
-          explanation: 'Proper chip collection technique ensures surveillance cameras can clearly see all transactions for security purposes.',
-          points: 10,
-        ),
-        Question(
-          id: 'cm5',
-          question: 'What should a dealer do if they make an incorrect payout?',
-          options: ['Quietly fix it', 'Immediately call the floor supervisor', 'Ask the player to return the chips', 'Ignore it'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.chipManagement,
-          explanation: 'Any payout errors must be reported immediately to a floor supervisor for proper correction and documentation.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'customer_service_1',
-      title: 'Customer Service Excellence',
-      category: QuizCategory.customerService,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'cs1',
-          question: 'How should a dealer greet players joining the table?',
-          options: ['Ignore them', 'A friendly welcome with a smile', 'Ask about their gambling budget', 'Tell them the house rules immediately'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.customerService,
-          explanation: 'Professional dealers should greet all players warmly with a smile, creating a welcoming atmosphere.',
-          points: 10,
-        ),
-        Question(
-          id: 'cs2',
-          question: 'What should a dealer do if a player is intoxicated?',
-          options: ['Continue dealing', 'Notify floor management for proper handling', 'Refuse to deal to them loudly', 'Lecture them about drinking'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.customerService,
-          explanation: 'Dealers should discreetly notify floor management, who are trained to handle intoxicated guests properly.',
-          points: 10,
-        ),
-        Question(
-          id: 'cs3',
-          question: 'Can dealers give gaming advice to players?',
-          options: ['Yes, always help players', 'No, dealers should remain neutral', 'Only to regular customers', 'Only about basic strategy'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.customerService,
-          explanation: 'Dealers must remain neutral and not give gaming advice, as this could create liability issues and affect game integrity.',
-          points: 10,
-        ),
-        Question(
-          id: 'cs4',
-          question: 'How should dealers handle player tips (tokes)?',
-          options: ['Pocket them immediately', 'Thank the player and drop in the tip box per casino policy', 'Share with other dealers secretly', 'Refuse all tips'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.customerService,
-          explanation: 'Dealers should thank players for tips and handle them according to casino policy, usually dropping them in a designated box.',
-          points: 10,
-        ),
-        Question(
-          id: 'cs5',
-          question: 'What is the appropriate conversation level at the table?',
-          options: ['Silent at all times', 'Professional small talk while maintaining focus on the game', 'Detailed personal conversations', 'Only talk about casino promotions'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.customerService,
-          explanation: 'Dealers should engage in light, professional conversation while maintaining complete focus on managing the game properly.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'game_rules_1',
-      title: 'Blackjack Rules for Dealers',
-      category: QuizCategory.gameRules,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'gr1',
-          question: 'In Blackjack, when must the dealer hit?',
-          options: ['On any hand', 'When the hand totals 16 or less', 'Only when a player asks', 'Never'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Dealers must hit on 16 or less and stand on 17 or more (rules may vary for soft 17 depending on house rules).',
-          points: 10,
-        ),
-        Question(
-          id: 'gr2',
-          question: 'What is a "natural" or "blackjack" hand?',
-          options: ['Any 21', 'Three sevens', 'An Ace and a 10-value card as the first two cards', 'Five cards totaling 21'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.gameRules,
-          explanation: 'A natural blackjack is specifically an Ace and a 10-value card (10, J, Q, K) dealt as the first two cards.',
-          points: 10,
-        ),
-        Question(
-          id: 'gr3',
-          question: 'What payout does a player blackjack typically receive?',
-          options: ['Even money (1:1)', '3:2', '2:1', '6:5'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Traditional blackjack pays 3:2, though some casinos now offer 6:5 payouts (less favorable for players).',
-          points: 10,
-        ),
-        Question(
-          id: 'gr4',
-          question: 'When can a player "double down"?',
-          options: ['Anytime during the hand', 'Only on their first two cards', 'Only on a total of 11', 'After splitting'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Players can double down on their first two cards, doubling their bet and receiving exactly one additional card.',
-          points: 10,
-        ),
-        Question(
-          id: 'gr5',
-          question: 'What happens if both dealer and player have blackjack?',
-          options: ['Player wins', 'Dealer wins', 'Push (tie) - player gets their bet back', 'Player gets half their bet'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.gameRules,
-          explanation: 'When both dealer and player have blackjack, it\'s a push (tie), and the player\'s original bet is returned.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'casino_protocol_1',
-      title: 'Casino Protocol & Procedures',
-      category: QuizCategory.casinoProtocol,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'cp1',
-          question: 'Why must dealers "clear their hands" by clapping and showing palms?',
-          options: ['It\'s a tradition', 'To show surveillance they have nothing in their hands', 'To stretch their hands', 'To signal other dealers'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.casinoProtocol,
-          explanation: 'Dealers clear their hands to show surveillance cameras they aren\'t palming chips or cards, ensuring transparency.',
-          points: 10,
-        ),
-        Question(
-          id: 'cp2',
-          question: 'What does "table is open/closed" mean?',
-          options: ['The table needs cleaning', 'Whether the table is accepting new players or being closed down', 'Whether drinks are being served', 'Break time status'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.casinoProtocol,
-          explanation: 'This indicates whether the table is actively accepting players or is being closed/prepared for opening.',
-          points: 10,
-        ),
-        Question(
-          id: 'cp3',
-          question: 'What should a dealer never do with their hands during dealing?',
-          options: ['Touch their face or pockets', 'Deal cards', 'Stack chips', 'Shuffle cards'],
-          correctAnswerIndex: 0,
-          category: QuizCategory.casinoProtocol,
-          explanation: 'Dealers should never touch their face, hair, or pockets during dealing to maintain game integrity and prevent accusations of cheating.',
-          points: 10,
-        ),
-        Question(
-          id: 'cp4',
-          question: 'What is a "fill" in casino operations?',
-          options: ['Adding more players', 'Bringing more chips to a table', 'Refilling drinks', 'Replacing cards'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.casinoProtocol,
-          explanation: 'A fill is when additional chips are brought to a table to replenish the dealer\'s chip tray during play.',
-          points: 10,
-        ),
-        Question(
-          id: 'cp5',
-          question: 'What is a "credit" in casino operations?',
-          options: ['Player loyalty points', 'Removing excess chips from the table', 'Dealer performance score', 'Customer discount'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.casinoProtocol,
-          explanation: 'A credit is when excess chips are removed from the dealer\'s tray and returned to the casino cage.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'roulette_dealer_1',
-      title: 'Roulette Dealer Skills',
-      category: QuizCategory.gameRules,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'rd1',
-          question: 'What must a roulette dealer do before each spin?',
-          options: ['Count all bets', 'Call "no more bets" and wave hand over the table', 'Check the wheel for damage', 'Clean the ball'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Dealers must clearly announce "no more bets" and make a hand gesture over the table before the ball drops.',
-          points: 10,
-        ),
-        Question(
-          id: 'rd2',
-          question: 'How should a roulette dealer call out the winning number?',
-          options: ['Silently point to it', 'Say the number only', 'Announce number, color, and odd/even clearly', 'Write it down'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.gameRules,
-          explanation: 'Dealers should clearly announce the complete result: number, color (red/black), and whether it\'s odd/even.',
-          points: 10,
-        ),
-        Question(
-          id: 'rd3',
-          question: 'What is the purpose of the dolly in roulette?',
-          options: ['To spin the wheel', 'To mark the winning number after the ball lands', 'To clear losing bets', 'To hold the ball'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'The dolly (marker) is placed on the winning number to clearly indicate the result and prevent betting on that area.',
-          points: 10,
-        ),
-        Question(
-          id: 'rd4',
-          question: 'In what order should roulette payouts be made?',
-          options: ['Largest bets first', 'Inside bets first, then outside bets', 'Outside bets first, then inside bets', 'Clockwise around the table'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.gameRules,
-          explanation: 'Dealers typically pay outside bets first (simpler) and then proceed to inside bets (more complex calculations).',
-          points: 10,
-        ),
-        Question(
-          id: 'rd5',
-          question: 'Why do roulette tables use different colored chips for each player?',
-          options: ['For aesthetics', 'To prevent disputes about bet ownership', 'To track player spending', 'Casino tradition'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Different colored chips for each player prevent confusion and disputes about which bets belong to whom.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'poker_dealer_1',
-      title: 'Poker Dealer Fundamentals',
-      category: QuizCategory.gameRules,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'pd1',
-          question: 'In Texas Hold\'em, how many cards does each player receive?',
-          options: ['1', '2', '3', '5'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'Each player receives 2 hole cards face down at the start of a Texas Hold\'em hand.',
-          points: 10,
-        ),
-        Question(
-          id: 'pd2',
-          question: 'What is the dealer button in poker?',
-          options: ['A red emergency button', 'A marker showing the dealer position', 'A chip storage container', 'A card shuffler control'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'The dealer button is a marker that rotates to show which position is the theoretical dealer for that hand.',
-          points: 10,
-        ),
-        Question(
-          id: 'pd3',
-          question: 'How should a poker dealer handle the rake?',
-          options: ['Take it after every bet', 'Collect it according to house rules after each hand', 'Never take a rake', 'Only at the end of the game'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'The rake (house fee) is collected according to specific house rules, typically after each completed hand.',
-          points: 10,
-        ),
-        Question(
-          id: 'pd4',
-          question: 'What should a poker dealer do if two cards are dealt face up?',
-          options: ['Continue dealing', 'Declare a misdeal', 'Let the player decide', 'Shuffle immediately'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'If multiple cards are exposed during the deal, it\'s typically declared a misdeal and cards are reshuffled.',
-          points: 10,
-        ),
-        Question(
-          id: 'pd5',
-          question: 'In poker, what is "string betting" and how should dealers handle it?',
-          options: ['A valid betting style', 'An illegal bet made in multiple motions - must be called out', 'A type of chip stack', 'Advanced betting strategy'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.gameRules,
-          explanation: 'String betting (betting in multiple motions) is not allowed. Dealers must enforce the "one motion" rule for bets.',
-          points: 10,
-        ),
-      ],
-    ),
-    Quiz(
-      id: 'general_dealer_1',
-      title: 'General Dealer Knowledge',
-      category: QuizCategory.general,
-      timeLimit: 600,
-      passingScore: 70,
-      questions: [
-        Question(
-          id: 'gd1',
-          question: 'What is the minimum age to work as a casino dealer in most jurisdictions?',
-          options: ['18', '19', '21', '25'],
-          correctAnswerIndex: 2,
-          category: QuizCategory.general,
-          explanation: 'Most jurisdictions require dealers to be at least 21 years old, the same age as legal gambling age.',
-          points: 10,
-        ),
-        Question(
-          id: 'gd2',
-          question: 'What does "the eye in the sky" refer to?',
-          options: ['Ceiling lights', 'Surveillance cameras', 'Smoke detectors', 'Air conditioning vents'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.general,
-          explanation: '"Eye in the sky" is casino slang for the extensive surveillance camera system monitoring all gaming activities.',
-          points: 10,
-        ),
-        Question(
-          id: 'gd3',
-          question: 'What is the typical dealer rotation time?',
-          options: ['10 minutes', '20-30 minutes', '1 hour', '4 hours'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.general,
-          explanation: 'Dealers typically rotate every 20-30 minutes to maintain focus and prevent fatigue.',
-          points: 10,
-        ),
-        Question(
-          id: 'gd4',
-          question: 'What qualities are most important for a successful dealer?',
-          options: ['Math skills only', 'Manual dexterity, math skills, customer service, and attention to detail', 'Being entertaining', 'Gambling knowledge'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.general,
-          explanation: 'Successful dealers need a combination of technical skills, mathematical ability, customer service, and unwavering attention to detail.',
-          points: 10,
-        ),
-        Question(
-          id: 'gd5',
-          question: 'What is a "pit boss"?',
-          options: ['Head of security', 'Supervisor overseeing multiple gaming tables', 'Casino owner', 'Lead dealer'],
-          correctAnswerIndex: 1,
-          category: QuizCategory.general,
-          explanation: 'A pit boss is a supervisor who oversees multiple gaming tables in a specific area (pit) of the casino floor.',
-          points: 10,
-        ),
-      ],
-    ),
-  ];
 }
