@@ -5,6 +5,10 @@ enum QuizCategory {
   customerService('Customer Service', 'Player interaction skills'),
   gameRules('Game Rules', 'Know the rules inside out'),
   casinoProtocol('Casino Protocol', 'Professional procedures'),
+  casinoMath('Casino Math', 'Calculations and payouts'),
+  securityProcedures('Security & Surveillance', 'Safety and monitoring'),
+  specialtyGames('Specialty Games', 'Baccarat, Craps, Pai Gow'),
+  dealerPsychology('Dealer Psychology', 'Mental game and focus'),
   general('General Knowledge', 'All-around dealer knowledge');
 
   final String title;

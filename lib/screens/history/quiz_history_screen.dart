@@ -316,25 +316,41 @@ class QuizHistoryScreen extends StatelessWidget {
         return Icons.square;
       case QuizCategory.general:
         return Icons.quiz;
+      case QuizCategory.casinoMath:
+        return Icons.calculate;
+      case QuizCategory.securityProcedures:
+        return Icons.security;
+      case QuizCategory.specialtyGames:
+        return Icons.stars;
+      case QuizCategory.dealerPsychology:
+        return Icons.psychology;
     }
   }
 
   String _getCategoryName(QuizCategory category) {
     switch (category) {
       case QuizCategory.dealerBasics:
-        return 'Poker';
+        return 'Dealer Basics';
       case QuizCategory.cardHandling:
-        return 'Blackjack';
+        return 'Card Handling';
       case QuizCategory.chipManagement:
-        return 'Roulette';
+        return 'Chip Management';
       case QuizCategory.customerService:
-        return 'Slots';
+        return 'Customer Service';
       case QuizCategory.gameRules:
-        return 'Baccarat';
+        return 'Game Rules';
       case QuizCategory.casinoProtocol:
-        return 'Craps';
+        return 'Casino Protocol';
       case QuizCategory.general:
-        return 'General Casino';
+        return 'General Knowledge';
+      case QuizCategory.casinoMath:
+        return 'Casino Math';
+      case QuizCategory.securityProcedures:
+        return 'Security Procedures';
+      case QuizCategory.specialtyGames:
+        return 'Specialty Games';
+      case QuizCategory.dealerPsychology:
+        return 'Dealer Psychology';
     }
   }
 

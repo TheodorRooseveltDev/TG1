@@ -780,6 +780,14 @@ class _CategoryCard extends StatelessWidget {
         return Icons.rule;
       case QuizCategory.general:
         return Icons.school;
+      case QuizCategory.casinoMath:
+        return Icons.calculate;
+      case QuizCategory.securityProcedures:
+        return Icons.security;
+      case QuizCategory.specialtyGames:
+        return Icons.stars;
+      case QuizCategory.dealerPsychology:
+        return Icons.psychology;
     }
   }
 
@@ -1213,6 +1221,14 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
         return Icons.casino_outlined;
       case QuizCategory.general:
         return Icons.school;
+      case QuizCategory.casinoMath:
+        return Icons.calculate;
+      case QuizCategory.securityProcedures:
+        return Icons.security;
+      case QuizCategory.specialtyGames:
+        return Icons.stars;
+      case QuizCategory.dealerPsychology:
+        return Icons.psychology;
     }
   }
 
@@ -1473,6 +1489,14 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
         return Icons.casino_outlined;
       case QuizCategory.general:
         return Icons.school;
+      case QuizCategory.casinoMath:
+        return Icons.calculate;
+      case QuizCategory.securityProcedures:
+        return Icons.security;
+      case QuizCategory.specialtyGames:
+        return Icons.stars;
+      case QuizCategory.dealerPsychology:
+        return Icons.psychology;
     }
   }
 
