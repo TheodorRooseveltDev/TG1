@@ -1,11 +1,11 @@
 enum QuizCategory {
-  poker('Poker', 'Test your poker knowledge'),
-  blackjack('Blackjack', 'Master the 21 game'),
-  roulette('Roulette', 'Spin your knowledge'),
-  slots('Slot Machines', 'Learn the reels'),
-  baccarat('Baccarat', 'High stakes knowledge'),
-  craps('Craps', 'Roll the dice facts'),
-  general('General Casino', 'All-around casino knowledge');
+  dealerBasics('Dealer Basics', 'Essential dealer skills'),
+  cardHandling('Card Handling', 'Master card techniques'),
+  chipManagement('Chip Management', 'Handle chips like a pro'),
+  customerService('Customer Service', 'Player interaction skills'),
+  gameRules('Game Rules', 'Know the rules inside out'),
+  casinoProtocol('Casino Protocol', 'Professional procedures'),
+  general('General Knowledge', 'All-around dealer knowledge');
 
   final String title;
   final String description;

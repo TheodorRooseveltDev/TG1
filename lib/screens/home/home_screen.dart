@@ -765,18 +765,18 @@ class _CategoryCard extends StatelessWidget {
 
   IconData _getCategoryIcon() {
     switch (category) {
-      case QuizCategory.poker:
+      case QuizCategory.dealerBasics:
+        return Icons.person;
+      case QuizCategory.cardHandling:
         return Icons.style;
-      case QuizCategory.blackjack:
+      case QuizCategory.chipManagement:
+        return Icons.monetization_on;
+      case QuizCategory.customerService:
+        return Icons.support_agent;
+      case QuizCategory.gameRules:
         return Icons.casino;
-      case QuizCategory.roulette:
-        return Icons.album;
-      case QuizCategory.slots:
-        return Icons.view_module;
-      case QuizCategory.baccarat:
-        return Icons.credit_card;
-      case QuizCategory.craps:
-        return Icons.casino_outlined;
+      case QuizCategory.casinoProtocol:
+        return Icons.rule;
       case QuizCategory.general:
         return Icons.school;
     }
@@ -873,9 +873,9 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
   void _initializeSlots() {
     // Show first 3 categories initially
     _currentCategories = [
-      QuizCategory.poker,
-      QuizCategory.blackjack,
-      QuizCategory.roulette,
+      QuizCategory.dealerBasics,
+      QuizCategory.cardHandling,
+      QuizCategory.chipManagement,
     ];
     _targetCategories = List.from(_currentCategories);
   }
@@ -1198,17 +1198,17 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
 
   IconData _getCategoryIcon(QuizCategory category) {
     switch (category) {
-      case QuizCategory.poker:
+      case QuizCategory.dealerBasics:
         return Icons.style;
-      case QuizCategory.blackjack:
+      case QuizCategory.cardHandling:
         return Icons.casino;
-      case QuizCategory.roulette:
+      case QuizCategory.chipManagement:
         return Icons.album;
-      case QuizCategory.slots:
+      case QuizCategory.customerService:
         return Icons.view_module;
-      case QuizCategory.baccarat:
+      case QuizCategory.gameRules:
         return Icons.credit_card;
-      case QuizCategory.craps:
+      case QuizCategory.casinoProtocol:
         return Icons.casino_outlined;
       case QuizCategory.general:
         return Icons.school;
@@ -1458,17 +1458,17 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
 
   IconData _getCategoryIcon(QuizCategory category) {
     switch (category) {
-      case QuizCategory.poker:
+      case QuizCategory.dealerBasics:
         return Icons.style;
-      case QuizCategory.blackjack:
+      case QuizCategory.cardHandling:
         return Icons.casino;
-      case QuizCategory.roulette:
+      case QuizCategory.chipManagement:
         return Icons.album;
-      case QuizCategory.slots:
+      case QuizCategory.customerService:
         return Icons.view_module;
-      case QuizCategory.baccarat:
+      case QuizCategory.gameRules:
         return Icons.credit_card;
-      case QuizCategory.craps:
+      case QuizCategory.casinoProtocol:
         return Icons.casino_outlined;
       case QuizCategory.general:
         return Icons.school;

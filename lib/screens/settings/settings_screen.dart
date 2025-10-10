@@ -485,6 +485,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               const SizedBox(height: 12),
               
+              // Educational Disclaimer
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: AppTheme.neonBorder(
+                  color: AppTheme.disclaimerRed,
+                  borderWidth: 2.0,
+                  blurRadius: 12.0,
+                  backgroundColor: AppTheme.primaryMedium,
+                  radius: AppTheme.sharpRadius,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: AppTheme.disclaimerRed,
+                          size: 28,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'IMPORTANT NOTICE',
+                            style: TextStyle(
+                              color: AppTheme.disclaimerRed,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'This game is for educational purposes only and does not offer real money gambling or opportunities to win real money or prizes. It does not promote gambling but offers an insight into the dealer\'s career in an engaging way. Play safe and responsibly!',
+                      style: TextStyle(
+                        color: AppTheme.disclaimerRed,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              
+              const SizedBox(height: 16),
+              
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -531,7 +581,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         Text(
-                          'Casino Quiz Pro',
+                          'Casino Dealer Quiz',
                           style: const TextStyle(
                             color: AppTheme.textLight,
                             fontSize: 14,

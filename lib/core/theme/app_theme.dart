@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Professional 60:30:10 color scheme for casino quiz app
+/// Casino-themed color scheme with neon accents
 /// 60% - Dark background (primary)
-/// 30% - Gold accent (secondary)
+/// 30% - Neon Gold accent (secondary)
 /// 10% - White/Light (highlights)
 class AppTheme {
   // 60% - Dark Professional Colors
@@ -10,10 +10,16 @@ class AppTheme {
   static const Color primaryMedium = Color(0xFF1A1F3A); // Medium dark
   static const Color primaryLight = Color(0xFF2A2F4A); // Lighter dark
   
-  // 30% - Gold/Accent Colors
-  static const Color accentGold = Color(0xFFD4AF37); // Classic gold
-  static const Color accentGoldLight = Color(0xFFE5C158); // Light gold
-  static const Color accentGoldDark = Color(0xFFB8941F); // Dark gold
+  // 30% - Neon Gold/Accent Colors
+  static const Color accentGold = Color(0xFFFFD700); // Bright neon gold
+  static const Color accentGoldLight = Color(0xFFFFE74C); // Light neon gold
+  static const Color accentGoldDark = Color(0xFFD4AF37); // Dark gold
+  
+  // Neon accent colors for variety
+  static const Color neonPurple = Color(0xFFBF40BF); // Neon purple
+  static const Color neonBlue = Color(0xFF00E5FF); // Neon cyan
+  static const Color neonPink = Color(0xFFFF10F0); // Neon pink
+  static const Color neonGreen = Color(0xFF39FF14); // Neon green
   
   // 10% - Light/Highlight Colors
   static const Color textLight = Color(0xFFFFFFFF); // Pure white
@@ -24,10 +30,65 @@ class AppTheme {
   static const Color success = Color(0xFF10B981);
   static const Color error = Color(0xFFEF4444);
   static const Color warning = Color(0xFFF59E0B);
+  static const Color disclaimerRed = Color(0xFFFF3333); // Bright red for disclaimer
   
   // Sharp corner radius (minimal)
   static const double sharpRadius = 2.0;
   static const double mediumRadius = 4.0;
+  
+  // Neon border decoration helper
+  static BoxDecoration neonBorder({
+    Color color = accentGold,
+    double borderWidth = 2.0,
+    double blurRadius = 8.0,
+    double spreadRadius = 0.0,
+    Color? backgroundColor,
+    double radius = sharpRadius,
+  }) {
+    return BoxDecoration(
+      color: backgroundColor ?? primaryMedium,
+      borderRadius: BorderRadius.circular(radius),
+      border: Border.all(
+        color: color,
+        width: borderWidth,
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: color.withOpacity(0.6),
+          blurRadius: blurRadius,
+          spreadRadius: spreadRadius,
+        ),
+      ],
+    );
+  }
+  
+  // Multi-color neon border decoration (casino style)
+  static BoxDecoration casinoNeonBorder({
+    double borderWidth = 2.0,
+    Color? backgroundColor,
+    double radius = sharpRadius,
+  }) {
+    return BoxDecoration(
+      color: backgroundColor ?? primaryMedium,
+      borderRadius: BorderRadius.circular(radius),
+      border: Border.all(
+        color: accentGold,
+        width: borderWidth,
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: accentGold.withOpacity(0.5),
+          blurRadius: 8.0,
+          spreadRadius: 0.0,
+        ),
+        BoxShadow(
+          color: neonPurple.withOpacity(0.3),
+          blurRadius: 12.0,
+          spreadRadius: 1.0,
+        ),
+      ],
+    );
+  }
   
   static ThemeData get darkTheme {
     return ThemeData(

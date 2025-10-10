@@ -55,6 +55,9 @@ dependencies:
   
   # Animations
   flutter_animate: ^4.5.0
+  
+  # WebView
+  webview_flutter: ^4.4.2
 
 dev_dependencies:
   flutter_test:

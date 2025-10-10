@@ -302,17 +302,17 @@ class QuizHistoryScreen extends StatelessWidget {
 
   IconData _getCategoryIcon(QuizCategory category) {
     switch (category) {
-      case QuizCategory.poker:
+      case QuizCategory.dealerBasics:
         return Icons.casino;
-      case QuizCategory.blackjack:
+      case QuizCategory.cardHandling:
         return Icons.style;
-      case QuizCategory.roulette:
+      case QuizCategory.chipManagement:
         return Icons.adjust;
-      case QuizCategory.slots:
+      case QuizCategory.customerService:
         return Icons.casino_outlined;
-      case QuizCategory.baccarat:
+      case QuizCategory.gameRules:
         return Icons.diamond;
-      case QuizCategory.craps:
+      case QuizCategory.casinoProtocol:
         return Icons.square;
       case QuizCategory.general:
         return Icons.quiz;
@@ -321,17 +321,17 @@ class QuizHistoryScreen extends StatelessWidget {
 
   String _getCategoryName(QuizCategory category) {
     switch (category) {
-      case QuizCategory.poker:
+      case QuizCategory.dealerBasics:
         return 'Poker';
-      case QuizCategory.blackjack:
+      case QuizCategory.cardHandling:
         return 'Blackjack';
-      case QuizCategory.roulette:
+      case QuizCategory.chipManagement:
         return 'Roulette';
-      case QuizCategory.slots:
+      case QuizCategory.customerService:
         return 'Slots';
-      case QuizCategory.baccarat:
+      case QuizCategory.gameRules:
         return 'Baccarat';
-      case QuizCategory.craps:
+      case QuizCategory.casinoProtocol:
         return 'Craps';
       case QuizCategory.general:
         return 'General Casino';
