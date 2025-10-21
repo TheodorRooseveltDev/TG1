@@ -42,7 +42,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://example.com'));
+      ..loadRequest(Uri.parse('https://www.freeprivacypolicy.com/live/af9389eb-30de-4ccc-9095-cee0073f2d8f'));
   }
 
   @override

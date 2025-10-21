@@ -42,7 +42,7 @@ class _TermsScreenState extends State<TermsScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://example.com'));
+      ..loadRequest(Uri.parse('https://www.termsfeed.com/live/050728f0-5fb9-4485-83f2-e8b13d8ae6c2'));
   }
 
   @override
