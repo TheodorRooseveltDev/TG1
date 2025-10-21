@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/widgets/casino_blob_background.dart';
 import '../../models/quiz.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/quiz_provider.dart';
@@ -31,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primaryDark,
       appBar: AppBar(
         title: const Text('HOME'),
         leading: Builder(
@@ -55,8 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: _buildDrawer(context),
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: CasinoBlobBackground(
+        child: SafeArea(
+          child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,6 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+      ),
       ),
     );
   }
@@ -599,7 +601,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'CASINO QUIZ PRO',
+                        'CASINO ACADEMY PRO',
                         style: TextStyle(
                           color: AppTheme.textGray,
                           fontSize: 11,

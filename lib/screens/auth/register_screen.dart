@@ -74,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 
                 // Header
                 Text(
-                  'Join Casino Quiz Pro',
+                  'Join Casino Academy Pro',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     color: AppTheme.accentGold,
                   ),

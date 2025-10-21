@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'CASINO QUIZ PRO',
+                        'CASINO ACADEMY PRO',
                         style: Theme.of(context).textTheme.displayMedium?.copyWith(
                           color: AppTheme.accentGold,
                           letterSpacing: 2.0,

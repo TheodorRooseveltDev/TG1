@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-/// Casino-themed color scheme with neon accents
-/// 60% - Dark background (primary)
+/// Casino-themed color scheme with dark purple and neon accents
+/// 60% - Dark purple background
 /// 30% - Neon Gold accent (secondary)
 /// 10% - White/Light (highlights)
 class AppTheme {
-  // 60% - Dark Professional Colors
-  static const Color primaryDark = Color(0xFF0A0E27); // Deep navy/black
-  static const Color primaryMedium = Color(0xFF1A1F3A); // Medium dark
-  static const Color primaryLight = Color(0xFF2A2F4A); // Lighter dark
+  // 60% - Dark Purple Casino Colors
+  static const Color primaryDark = Color(0xFF0D0221); // Deep purple/black
+  static const Color primaryMedium = Color(0xFF1A0F2E); // Medium dark purple
+  static const Color primaryLight = Color(0xFF2B1B3D); // Lighter dark purple
+  
+  // Purple blob colors for background
+  static const Color blobPurple1 = Color(0xFF4A148C); // Deep purple
+  static const Color blobPurple2 = Color(0xFF6A1B9A); // Medium purple
+  static const Color blobPurple3 = Color(0xFF8E24AA); // Light purple
+  static const Color blobPurple4 = Color(0xFF9C27B0); // Vibrant purple
   
   // 30% - Neon Gold/Accent Colors
   static const Color accentGold = Color(0xFFFFD700); // Bright neon gold

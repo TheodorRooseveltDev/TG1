@@ -1,4 +1,4 @@
-# Casino Quiz Pro
+# Casino Academy Pro
 
 A comprehensive Flutter-based quiz application focused on casino games and gambling knowledge. Test your expertise across various casino games including Poker, Blackjack, Roulette, and more.
 
@@ -9,7 +9,7 @@ A comprehensive Flutter-based quiz application focused on casino games and gambl
 
 ## 📱 About
 
-Casino Quiz Pro is an educational quiz application designed to test and improve your knowledge of casino games and gambling concepts. Whether you're a beginner learning the ropes or an experienced player looking to sharpen your skills, this app provides engaging quizzes across multiple casino game categories.
+Casino Academy Pro is an educational quiz application designed to test and improve your knowledge of casino games and gambling concepts. Whether you're a beginner learning the ropes or an experienced player looking to sharpen your skills, this app provides engaging quizzes across multiple casino game categories.
 
 ## ✨ Features
 
@@ -170,7 +170,7 @@ Available in jurisdictions where educational gambling content is permitted. User
 
 ## 🤝 Contributing
 
-We welcome contributions to improve Casino Quiz Pro! Please read our contributing guidelines before submitting pull requests.
+We welcome contributions to improve Casino Academy Pro! Please read our contributing guidelines before submitting pull requests.
 
 ## 📞 Support
 

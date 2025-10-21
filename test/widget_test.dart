@@ -10,12 +10,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:project_1/main.dart';
 
 void main() {
-  testWidgets('Casino Quiz Pro smoke test', (WidgetTester tester) async {
+  testWidgets('Casino Academy Pro smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const CasinoQuizApp());
 
     // Verify that login screen is shown
-    expect(find.text('CASINO QUIZ PRO'), findsOneWidget);
+    expect(find.text('CASINO ACADEMY PRO'), findsOneWidget);
     expect(find.text('LOGIN'), findsOneWidget);
   });
 }

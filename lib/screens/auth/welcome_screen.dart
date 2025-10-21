@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/widgets/casino_blob_background.dart';
 import '../../providers/auth_provider.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -60,38 +61,25 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.primaryDark,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Spacer(),
-              
-              // Simple big icon
-              const Icon(
-                Icons.casino,
-                size: 120,
-                color: AppTheme.accentGold,
-              ),
-              
-              const SizedBox(height: 32),
-              
-              // Title
-              const Text(
-                'CASINO QUIZ',
-                style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2.0,
-                  color: AppTheme.accentGold,
+      body: CasinoBlobBackground(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Spacer(),
+                
+                // Logo
+                Image.asset(
+                  'assets/logo.png',
+                  width: 300,
+                  height: 300,
+                  fit: BoxFit.contain,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              
-              const SizedBox(height: 12),
+                
+                const SizedBox(height: 32),
               
               const Text(
                 'Test Your Knowledge',
@@ -204,7 +192,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               
               const SizedBox(height: 12),
-            ],
+              ],
+            ),
           ),
         ),
       ),
