@@ -18,7 +18,9 @@ class _WikiScreenState extends State<WikiScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<QuizProvider>().loadQuizzes();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<QuizProvider>().loadQuizzes();
+    });
   }
 
   @override
@@ -38,15 +40,10 @@ class _WikiScreenState extends State<WikiScreen> {
         ? allQuizzes
         : allQuizzes.where((q) => q.category.toString() == _selectedCategory).toList();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('QUIZ WIKI'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppTheme.textLight),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      body: SafeArea(
+    return SafeArea(
+      top: false,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 120.0),
         child: Column(
           children: [
             // Header Section
@@ -121,30 +118,31 @@ class _WikiScreenState extends State<WikiScreen> {
               ),
             ),
 
+            const SizedBox(height: 20),
+
             // Quiz List
-            Expanded(
-              child: filteredQuizzes.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'NO QUIZZES FOUND',
-                        style: TextStyle(
-                          color: AppTheme.textGray,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
+            filteredQuizzes.isEmpty
+                ? Container(
+                    height: 200,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'NO QUIZZES FOUND',
+                      style: TextStyle(
+                        color: AppTheme.textGray,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
                       ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.all(20),
-                      itemCount: filteredQuizzes.length,
-                      itemBuilder: (context, index) {
-                        final quiz = filteredQuizzes[index];
-                        final isExpanded = _expandedQuizId == quiz.id;
-                        
-                        return _buildQuizCard(quiz, isExpanded);
-                      },
                     ),
-            ),
+                  )
+                : Column(
+                    children: filteredQuizzes.map((quiz) {
+                      final isExpanded = _expandedQuizId == quiz.id;
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: _buildQuizCard(quiz, isExpanded),
+                      );
+                    }).toList(),
+                  ),
           ],
         ),
       ),

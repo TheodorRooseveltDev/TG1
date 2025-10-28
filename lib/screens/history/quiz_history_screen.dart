@@ -9,11 +9,11 @@ class QuizHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('QUIZ HISTORY'),
-      ),
-      body: Consumer<QuizProvider>(
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 100.0),
+        child: Consumer<QuizProvider>(
         builder: (context, quizProvider, child) {
           final results = quizProvider.userResults;
 
@@ -211,6 +211,7 @@ class QuizHistoryScreen extends StatelessWidget {
             },
           );
         },
+        ),
       ),
     );
   }

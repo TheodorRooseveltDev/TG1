@@ -18,7 +18,6 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _soundEnabled = true;
   bool _vibrationEnabled = true;
-  bool _notificationsEnabled = false;
   // bool _darkModeEnabled = true; // TODO: Implement dark mode feature
   double _soundVolume = 0.7;
 
@@ -33,7 +32,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() {
       _soundEnabled = prefs.getBool('soundEnabled') ?? true;
       _vibrationEnabled = prefs.getBool('vibrationEnabled') ?? true;
-      _notificationsEnabled = prefs.getBool('notificationsEnabled') ?? false;
       // _darkModeEnabled = prefs.getBool('darkModeEnabled') ?? true;
       _soundVolume = prefs.getDouble('soundVolume') ?? 0.7;
     });
@@ -123,18 +121,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final authProvider = context.watch<AuthProvider>();
     final user = authProvider.currentUser;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SETTINGS'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppTheme.textLight),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
+    return SafeArea(
+      top: false,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Profile Section
@@ -326,34 +317,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onChanged: (value) {
                     setState(() => _vibrationEnabled = value);
                     _saveSetting('vibrationEnabled', value);
-                  },
-                  activeColor: AppTheme.accentGold,
-                ),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Notifications
-              const Text(
-                'NOTIFICATIONS',
-                style: TextStyle(
-                  color: AppTheme.accentGold,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.5,
-                ),
-              ),
-              const SizedBox(height: 12),
-              
-              _SettingTile(
-                icon: Icons.notifications,
-                title: 'Push Notifications',
-                subtitle: 'Receive reminders and updates',
-                trailing: Switch(
-                  value: _notificationsEnabled,
-                  onChanged: (value) {
-                    setState(() => _notificationsEnabled = value);
-                    _saveSetting('notificationsEnabled', value);
                   },
                   activeColor: AppTheme.accentGold,
                 ),
@@ -597,7 +560,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
               const SizedBox(height: 24),
             ],
-          ),
         ),
       ),
     );
