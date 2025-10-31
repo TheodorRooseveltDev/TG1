@@ -10,7 +10,7 @@ class QuizResultScreen extends StatefulWidget {
   final bool wasAlreadyCompleted;
 
   const QuizResultScreen({
-    super.key, 
+    super.key,
     required this.result,
     this.wasAlreadyCompleted = false,
   });
@@ -37,19 +37,19 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
     final authProvider = context.read<AuthProvider>();
     final quizProvider = context.read<QuizProvider>();
     final quiz = quizProvider.currentQuiz;
-    
+
     if (quiz != null) {
       // Calculate XP based on performance
       final scorePercentage = (widget.result.score / widget.result.totalPoints);
       final baseXP = 50; // Base XP for completing quiz
       final bonusXP = (scorePercentage * 100).toInt(); // Bonus based on score
       final totalXP = baseXP + bonusXP;
-      
+
       // Only award XP if not already completed with 100%
       if (!widget.wasAlreadyCompleted) {
         authProvider.updateUserStats(widget.result.score, totalXP);
       }
-      
+
       setState(() {
         _hasAwardedXP = true;
       });
@@ -61,10 +61,11 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
     final quizProvider = context.watch<QuizProvider>();
     final quiz = quizProvider.currentQuiz;
     final passed = widget.result.isPassed(quiz?.passingScore ?? 70);
-    
+
     // Use the wasAlreadyCompleted flag from widget
-    final wasAlreadyCompleted = widget.wasAlreadyCompleted && widget.result.percentage >= 100;
-    
+    final wasAlreadyCompleted =
+        widget.wasAlreadyCompleted && widget.result.percentage >= 100;
+
     // Calculate XP earned
     final scorePercentage = (widget.result.score / widget.result.totalPoints);
     final baseXP = 50;
@@ -102,8 +103,12 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                         width: 120,
                         height: 120,
                         decoration: BoxDecoration(
-                          color: passed ? AppTheme.success.withOpacity(0.1) : AppTheme.error.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          color: passed
+                              ? AppTheme.success.withOpacity(0.1)
+                              : AppTheme.error.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                         ),
                         child: Icon(
                           passed ? Icons.check_circle : Icons.cancel,
@@ -111,35 +116,40 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                           color: passed ? AppTheme.success : AppTheme.error,
                         ),
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Status text
                       Text(
                         passed ? 'CONGRATULATIONS!' : 'BETTER LUCK NEXT TIME',
-                        style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          color: passed ? AppTheme.success : AppTheme.error,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium
+                            ?.copyWith(
+                              color: passed ? AppTheme.success : AppTheme.error,
+                            ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 8),
-                      
+
                       Text(
-                        passed ? 'You passed the quiz!' : 'You didn\'t pass this time',
+                        passed
+                            ? 'You passed the quiz!'
+                            : 'You didn\'t pass this time',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: AppTheme.textGray,
                         ),
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
+
                       // XP Earned Card
                       Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: AppTheme.primaryMedium,
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                           border: Border.all(
                             color: AppTheme.accentGold.withOpacity(0.3),
                             width: 1,
@@ -168,9 +178,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  wasAlreadyCompleted ? 'ALREADY COMPLETED' : '+$totalXP XP',
+                                  wasAlreadyCompleted
+                                      ? 'ALREADY COMPLETED'
+                                      : '+$totalXP XP',
                                   style: TextStyle(
-                                    color: wasAlreadyCompleted ? AppTheme.textGray : AppTheme.accentGold,
+                                    color: wasAlreadyCompleted
+                                        ? AppTheme.textGray
+                                        : AppTheme.accentGold,
                                     fontSize: wasAlreadyCompleted ? 16 : 24,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -179,7 +193,9 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              wasAlreadyCompleted ? '(No XP)' : '(50 base + bonus)',
+                              wasAlreadyCompleted
+                                  ? '(No XP)'
+                                  : '(50 base + bonus)',
                               style: const TextStyle(
                                 color: AppTheme.textGray,
                                 fontSize: 11,
@@ -189,15 +205,17 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                           ],
                         ),
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Score card
                       Container(
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
                           color: AppTheme.primaryMedium,
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                           border: Border.all(
                             color: AppTheme.accentGold,
                             width: 2,
@@ -235,9 +253,9 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                           ],
                         ),
                       ),
-                      
+
                       const SizedBox(height: 24),
-                      
+
                       // Statistics
                       Row(
                         children: [
@@ -254,15 +272,16 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                             child: _StatCard(
                               icon: Icons.cancel,
                               label: 'WRONG',
-                              value: '${widget.result.totalQuestions - widget.result.correctAnswers}',
+                              value:
+                                  '${widget.result.totalQuestions - widget.result.correctAnswers}',
                               color: AppTheme.error,
                             ),
                           ),
                         ],
                       ),
-                      
+
                       const SizedBox(height: 12),
-                      
+
                       Row(
                         children: [
                           Expanded(
@@ -284,9 +303,9 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                           ),
                         ],
                       ),
-                      
+
                       const SizedBox(height: 32),
-                      
+
                       // Review answers section
                       if (quiz != null) ...[
                         Container(
@@ -294,7 +313,9 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             color: AppTheme.primaryMedium,
-                            borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.sharpRadius,
+                            ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -309,10 +330,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                                   const SizedBox(width: 12),
                                   Text(
                                     'ANSWER REVIEW',
-                                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                      color: AppTheme.accentGold,
-                                      letterSpacing: 1.0,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                          color: AppTheme.accentGold,
+                                          letterSpacing: 1.0,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -333,7 +357,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                   ),
                 ),
               ),
-              
+
               // Action buttons
               Container(
                 padding: const EdgeInsets.all(20),
@@ -352,12 +376,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                         onPressed: () {
                           quizProvider.resetQuiz();
                           // Navigate back to home screen
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(
+                            context,
+                          ).popUntil((route) => route.isFirst);
                         },
                         child: const Text('BACK TO HOME'),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -395,10 +420,7 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.primaryMedium,
         borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-        border: Border.all(
-          color: AppTheme.primaryLight,
-          width: 1,
-        ),
+        border: Border.all(color: AppTheme.primaryLight, width: 1),
       ),
       child: Column(
         children: [
@@ -454,8 +476,8 @@ class _QuestionReview extends StatelessWidget {
           color: !wasAnswered
               ? AppTheme.textDark
               : isCorrect
-                  ? AppTheme.success
-                  : AppTheme.error,
+              ? AppTheme.success
+              : AppTheme.error,
           width: 1,
         ),
       ),
@@ -471,8 +493,8 @@ class _QuestionReview extends StatelessWidget {
                   color: !wasAnswered
                       ? AppTheme.textDark
                       : isCorrect
-                          ? AppTheme.success
-                          : AppTheme.error,
+                      ? AppTheme.success
+                      : AppTheme.error,
                   borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
                 ),
                 child: Text(
@@ -489,20 +511,20 @@ class _QuestionReview extends StatelessWidget {
                 !wasAnswered
                     ? Icons.help_outline
                     : isCorrect
-                        ? Icons.check_circle
-                        : Icons.cancel,
+                    ? Icons.check_circle
+                    : Icons.cancel,
                 color: !wasAnswered
                     ? AppTheme.textDark
                     : isCorrect
-                        ? AppTheme.success
-                        : AppTheme.error,
+                    ? AppTheme.success
+                    : AppTheme.error,
                 size: 20,
               ),
             ],
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Question text
           Text(
             question.question,
@@ -512,9 +534,9 @@ class _QuestionReview extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Correct answer
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -538,7 +560,7 @@ class _QuestionReview extends StatelessWidget {
               ),
             ],
           ),
-          
+
           // User answer if wrong or not answered
           if (wasAnswered && !isCorrect) ...[
             const SizedBox(height: 8),
@@ -565,7 +587,7 @@ class _QuestionReview extends StatelessWidget {
               ],
             ),
           ],
-          
+
           if (!wasAnswered) ...[
             const SizedBox(height: 8),
             const Text(
@@ -577,7 +599,7 @@ class _QuestionReview extends StatelessWidget {
               ),
             ),
           ],
-          
+
           // Explanation
           const SizedBox(height: 12),
           Container(

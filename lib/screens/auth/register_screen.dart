@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 20),
-                
+
                 // Header
                 Text(
                   'Join Casino Academy Pro',
@@ -80,17 +80,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                
+
                 const SizedBox(height: 8),
-                
+
                 Text(
                   'Create your account and start testing your casino knowledge',
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Email field
                 TextFormField(
                   controller: _emailController,
@@ -99,7 +99,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                     labelText: 'EMAIL',
                     hintText: 'Enter your email',
-                    prefixIcon: Icon(Icons.email_outlined, color: AppTheme.accentGold),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: AppTheme.accentGold,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -111,9 +114,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Username field
                 TextFormField(
                   controller: _usernameController,
@@ -121,7 +124,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                     labelText: 'USERNAME',
                     hintText: 'Choose a username',
-                    prefixIcon: Icon(Icons.person_outline, color: AppTheme.accentGold),
+                    prefixIcon: Icon(
+                      Icons.person_outline,
+                      color: AppTheme.accentGold,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -133,9 +139,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Password field
                 TextFormField(
                   controller: _passwordController,
@@ -144,10 +150,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                     labelText: 'PASSWORD',
                     hintText: 'Create a password',
-                    prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.accentGold),
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                      color: AppTheme.accentGold,
+                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppTheme.textGray,
                       ),
                       onPressed: () {
@@ -167,9 +178,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Confirm password field
                 TextFormField(
                   controller: _confirmPasswordController,
@@ -178,10 +189,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                     labelText: 'CONFIRM PASSWORD',
                     hintText: 'Re-enter your password',
-                    prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.accentGold),
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                      color: AppTheme.accentGold,
+                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                        _obscureConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppTheme.textGray,
                       ),
                       onPressed: () {
@@ -201,16 +217,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Register button
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
                     return SizedBox(
                       height: 56,
                       child: ElevatedButton(
-                        onPressed: authProvider.isLoading ? null : _handleRegister,
+                        onPressed: authProvider.isLoading
+                            ? null
+                            : _handleRegister,
                         child: authProvider.isLoading
                             ? const SizedBox(
                                 height: 24,
@@ -227,7 +245,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 24),
               ],
             ),

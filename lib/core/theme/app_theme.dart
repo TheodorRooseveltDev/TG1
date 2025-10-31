@@ -9,39 +9,41 @@ class AppTheme {
   static const Color primaryDark = Color(0xFF0D0221); // Deep purple/black
   static const Color primaryMedium = Color(0xFF1A0F2E); // Medium dark purple
   static const Color primaryLight = Color(0xFF2B1B3D); // Lighter dark purple
-  
+
   // Purple blob colors for background
   static const Color blobPurple1 = Color(0xFF4A148C); // Deep purple
   static const Color blobPurple2 = Color(0xFF6A1B9A); // Medium purple
   static const Color blobPurple3 = Color(0xFF8E24AA); // Light purple
   static const Color blobPurple4 = Color(0xFF9C27B0); // Vibrant purple
-  
+
   // 30% - Neon Gold/Accent Colors
   static const Color accentGold = Color(0xFFFFD700); // Bright neon gold
   static const Color accentGoldLight = Color(0xFFFFE74C); // Light neon gold
   static const Color accentGoldDark = Color(0xFFD4AF37); // Dark gold
-  
+
   // Neon accent colors for variety
   static const Color neonPurple = Color(0xFFBF40BF); // Neon purple
   static const Color neonBlue = Color(0xFF00E5FF); // Neon cyan
   static const Color neonPink = Color(0xFFFF10F0); // Neon pink
   static const Color neonGreen = Color(0xFF39FF14); // Neon green
-  
+
   // 10% - Light/Highlight Colors
   static const Color textLight = Color(0xFFFFFFFF); // Pure white
   static const Color textGray = Color(0xFFB0B3C1); // Light gray
   static const Color textDark = Color(0xFF6B7280); // Medium gray
-  
+
   // Status colors
   static const Color success = Color(0xFF10B981);
   static const Color error = Color(0xFFEF4444);
   static const Color warning = Color(0xFFF59E0B);
-  static const Color disclaimerRed = Color(0xFFFF3333); // Bright red for disclaimer
-  
+  static const Color disclaimerRed = Color(
+    0xFFFF3333,
+  ); // Bright red for disclaimer
+
   // Sharp corner radius (minimal)
   static const double sharpRadius = 2.0;
   static const double mediumRadius = 4.0;
-  
+
   // Neon border decoration helper
   static BoxDecoration neonBorder({
     Color color = accentGold,
@@ -54,10 +56,7 @@ class AppTheme {
     return BoxDecoration(
       color: backgroundColor ?? primaryMedium,
       borderRadius: BorderRadius.circular(radius),
-      border: Border.all(
-        color: color,
-        width: borderWidth,
-      ),
+      border: Border.all(color: color, width: borderWidth),
       boxShadow: [
         BoxShadow(
           color: color.withOpacity(0.6),
@@ -67,7 +66,7 @@ class AppTheme {
       ],
     );
   }
-  
+
   // Multi-color neon border decoration (casino style)
   static BoxDecoration casinoNeonBorder({
     double borderWidth = 2.0,
@@ -77,10 +76,7 @@ class AppTheme {
     return BoxDecoration(
       color: backgroundColor ?? primaryMedium,
       borderRadius: BorderRadius.circular(radius),
-      border: Border.all(
-        color: accentGold,
-        width: borderWidth,
-      ),
+      border: Border.all(color: accentGold, width: borderWidth),
       boxShadow: [
         BoxShadow(
           color: accentGold.withOpacity(0.5),
@@ -95,7 +91,7 @@ class AppTheme {
       ],
     );
   }
-  
+
   static ThemeData get darkTheme {
     return ThemeData(
       brightness: Brightness.dark,
@@ -107,7 +103,7 @@ class AppTheme {
         surface: primaryMedium,
         error: error,
       ),
-      
+
       // AppBar theme - sharp, professional
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryMedium,
@@ -120,7 +116,7 @@ class AppTheme {
           letterSpacing: 0.5,
         ),
       ),
-      
+
       // Card theme - sharp edges
       cardTheme: const CardThemeData(
         color: primaryMedium,
@@ -130,7 +126,7 @@ class AppTheme {
           borderRadius: BorderRadius.all(Radius.circular(sharpRadius)),
         ),
       ),
-      
+
       // Elevated button - sharp, gold accent
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -148,7 +144,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Text button
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -160,7 +156,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Input decoration - sharp borders
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -181,11 +177,14 @@ class AppTheme {
           borderRadius: BorderRadius.all(Radius.circular(sharpRadius)),
           borderSide: BorderSide(color: error, width: 1),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
         labelStyle: const TextStyle(color: textGray),
         hintStyle: const TextStyle(color: textDark),
       ),
-      
+
       // Text theme
       textTheme: const TextTheme(
         displayLarge: TextStyle(

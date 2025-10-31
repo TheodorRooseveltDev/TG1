@@ -4,7 +4,7 @@ import '../services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
   final AuthService _authService = AuthService();
-  
+
   User? _currentUser;
   bool _isLoading = false;
   String? _errorMessage;
@@ -52,6 +52,13 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> logout() async {
     await _authService.logout();
+    _currentUser = null;
+    _errorMessage = null;
+    notifyListeners();
+  }
+
+  Future<void> deleteProfile() async {
+    await _authService.deleteProfile();
     _currentUser = null;
     _errorMessage = null;
     notifyListeners();

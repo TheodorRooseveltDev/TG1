@@ -42,7 +42,9 @@ class QuizDetailScreen extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color: AppTheme.accentGold,
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.sharpRadius,
+                        ),
                       ),
                       child: Text(
                         quiz.category.title.toUpperCase(),
@@ -54,9 +56,9 @@ class QuizDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     // Title
                     Text(
                       quiz.title,
@@ -64,19 +66,19 @@ class QuizDetailScreen extends StatelessWidget {
                         color: AppTheme.textLight,
                       ),
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Description
                     Text(
                       quiz.category.description,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppTheme.textGray,
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge?.copyWith(color: AppTheme.textGray),
                     ),
-                    
+
                     const SizedBox(height: 32),
-                    
+
                     // Info cards
                     Row(
                       children: [
@@ -97,9 +99,9 @@ class QuizDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 12),
-                    
+
                     Row(
                       children: [
                         Expanded(
@@ -119,16 +121,18 @@ class QuizDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 32),
-                    
+
                     // Rules section
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: AppTheme.primaryMedium,
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.sharpRadius,
+                        ),
                         border: Border.all(
                           color: AppTheme.accentGold,
                           width: 1,
@@ -147,16 +151,18 @@ class QuizDetailScreen extends StatelessWidget {
                               const SizedBox(width: 12),
                               Text(
                                 'QUIZ RULES',
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  color: AppTheme.accentGold,
-                                  letterSpacing: 1.0,
-                                ),
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(
+                                      color: AppTheme.accentGold,
+                                      letterSpacing: 1.0,
+                                    ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 16),
                           _RuleItem(
-                            text: 'You have $minutes minutes to complete the quiz',
+                            text:
+                                'You have $minutes minutes to complete the quiz',
                           ),
                           _RuleItem(
                             text: 'Each question has only one correct answer',
@@ -177,7 +183,7 @@ class QuizDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Start button
             Container(
               padding: const EdgeInsets.all(20),
@@ -197,13 +203,19 @@ class QuizDetailScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: AppTheme.success.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                           border: Border.all(color: AppTheme.success, width: 1),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.check_circle, color: AppTheme.success, size: 20),
+                            const Icon(
+                              Icons.check_circle,
+                              color: AppTheme.success,
+                              size: 20,
+                            ),
                             const SizedBox(width: 8),
                             Text(
                               'COMPLETED - Best Score: ${bestResult.percentage.toStringAsFixed(0)}%',
@@ -262,10 +274,7 @@ class _InfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.primaryMedium,
         borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-        border: Border.all(
-          color: AppTheme.primaryLight,
-          width: 1,
-        ),
+        border: Border.all(color: AppTheme.primaryLight, width: 1),
       ),
       child: Column(
         children: [

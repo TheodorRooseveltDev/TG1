@@ -27,16 +27,15 @@ class _WikiScreenState extends State<WikiScreen> {
     final allQuizzes = quizProvider.allQuizzes;
 
     // Get unique categories
-    final categories = allQuizzes
-        .map((q) => q.category)
-        .toSet()
-        .toList()
+    final categories = allQuizzes.map((q) => q.category).toSet().toList()
       ..sort((a, b) => a.toString().compareTo(b.toString()));
 
     // Filter quizzes by selected category
     final filteredQuizzes = _selectedCategory == null
         ? allQuizzes
-        : allQuizzes.where((q) => q.category.toString() == _selectedCategory).toList();
+        : allQuizzes
+              .where((q) => q.category.toString() == _selectedCategory)
+              .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +65,9 @@ class _WikiScreenState extends State<WikiScreen> {
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: AppTheme.accentGold.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                         ),
                         child: const Icon(
                           Icons.school,
@@ -102,7 +103,7 @@ class _WikiScreenState extends State<WikiScreen> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Category Filter
                   SizedBox(
                     height: 40,
@@ -111,8 +112,14 @@ class _WikiScreenState extends State<WikiScreen> {
                       children: [
                         _buildCategoryChip('ALL', null),
                         ...categories.map((category) {
-                          final categoryName = category.toString().split('.').last;
-                          return _buildCategoryChip(categoryName, category.toString());
+                          final categoryName = category
+                              .toString()
+                              .split('.')
+                              .last;
+                          return _buildCategoryChip(
+                            categoryName,
+                            category.toString(),
+                          );
                         }),
                       ],
                     ),
@@ -140,7 +147,7 @@ class _WikiScreenState extends State<WikiScreen> {
                       itemBuilder: (context, index) {
                         final quiz = filteredQuizzes[index];
                         final isExpanded = _expandedQuizId == quiz.id;
-                        
+
                         return _buildQuizCard(quiz, isExpanded);
                       },
                     ),
@@ -153,7 +160,7 @@ class _WikiScreenState extends State<WikiScreen> {
 
   Widget _buildCategoryChip(String label, String? categoryValue) {
     final isSelected = _selectedCategory == categoryValue;
-    
+
     return Padding(
       padding: const EdgeInsets.only(right: 8),
       child: InkWell(
@@ -216,7 +223,9 @@ class _WikiScreenState extends State<WikiScreen> {
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: AppTheme.accentGold.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.sharpRadius,
+                        ),
                       ),
                       child: const Icon(
                         Icons.quiz,
@@ -315,10 +324,7 @@ class _WikiScreenState extends State<WikiScreen> {
         decoration: BoxDecoration(
           color: AppTheme.primaryDark,
           borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-          border: Border.all(
-            color: AppTheme.primaryLight,
-            width: 1,
-          ),
+          border: Border.all(color: AppTheme.primaryLight, width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +334,10 @@ class _WikiScreenState extends State<WikiScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: AppTheme.accentGold,
                     borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
@@ -355,7 +364,10 @@ class _WikiScreenState extends State<WikiScreen> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppTheme.accentGold.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
@@ -401,7 +413,9 @@ class _WikiScreenState extends State<WikiScreen> {
                         : AppTheme.primaryMedium,
                     borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
                     border: Border.all(
-                      color: isCorrect ? AppTheme.success : AppTheme.primaryLight,
+                      color: isCorrect
+                          ? AppTheme.success
+                          : AppTheme.primaryLight,
                       width: isCorrect ? 2 : 1,
                     ),
                   ),
@@ -411,8 +425,12 @@ class _WikiScreenState extends State<WikiScreen> {
                         width: 28,
                         height: 28,
                         decoration: BoxDecoration(
-                          color: isCorrect ? AppTheme.success : AppTheme.primaryDark,
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          color: isCorrect
+                              ? AppTheme.success
+                              : AppTheme.primaryDark,
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                         ),
                         child: Center(
                           child: isCorrect
@@ -422,7 +440,9 @@ class _WikiScreenState extends State<WikiScreen> {
                                   size: 18,
                                 )
                               : Text(
-                                  String.fromCharCode(65 + optionIndex), // A, B, C, D
+                                  String.fromCharCode(
+                                    65 + optionIndex,
+                                  ), // A, B, C, D
                                   style: const TextStyle(
                                     color: AppTheme.textGray,
                                     fontSize: 13,
@@ -436,19 +456,28 @@ class _WikiScreenState extends State<WikiScreen> {
                         child: Text(
                           option,
                           style: TextStyle(
-                            color: isCorrect ? AppTheme.success : AppTheme.textLight,
+                            color: isCorrect
+                                ? AppTheme.success
+                                : AppTheme.textLight,
                             fontSize: 13,
-                            fontWeight: isCorrect ? FontWeight.w600 : FontWeight.w500,
+                            fontWeight: isCorrect
+                                ? FontWeight.w600
+                                : FontWeight.w500,
                             height: 1.4,
                           ),
                         ),
                       ),
                       if (isCorrect)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: AppTheme.success,
-                            borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                            borderRadius: BorderRadius.circular(
+                              AppTheme.sharpRadius,
+                            ),
                           ),
                           child: const Text(
                             'CORRECT',

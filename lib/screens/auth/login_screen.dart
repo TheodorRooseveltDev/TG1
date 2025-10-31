@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 60),
-                
+
                 // Logo/Title
                 Container(
                   padding: const EdgeInsets.all(24),
@@ -65,18 +65,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: Column(
                     children: [
-                      Icon(
-                        Icons.casino,
-                        size: 64,
-                        color: AppTheme.accentGold,
-                      ),
+                      Icon(Icons.casino, size: 64, color: AppTheme.accentGold),
                       const SizedBox(height: 16),
                       Text(
                         'CASINO ACADEMY PRO',
-                        style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          color: AppTheme.accentGold,
-                          letterSpacing: 2.0,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium
+                            ?.copyWith(
+                              color: AppTheme.accentGold,
+                              letterSpacing: 2.0,
+                            ),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -89,9 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 48),
-                
+
                 // Email field
                 TextFormField(
                   controller: _emailController,
@@ -100,7 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: const InputDecoration(
                     labelText: 'EMAIL',
                     hintText: 'Enter your email',
-                    prefixIcon: Icon(Icons.email_outlined, color: AppTheme.accentGold),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: AppTheme.accentGold,
+                    ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -112,9 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Password field
                 TextFormField(
                   controller: _passwordController,
@@ -123,10 +123,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     labelText: 'PASSWORD',
                     hintText: 'Enter your password',
-                    prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.accentGold),
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                      color: AppTheme.accentGold,
+                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: AppTheme.textGray,
                       ),
                       onPressed: () {
@@ -146,9 +151,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Login button
                 Consumer<AuthProvider>(
                   builder: (context, authProvider, child) {
@@ -172,9 +177,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Divider
                 Row(
                   children: [
@@ -189,9 +194,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(child: Divider(color: AppTheme.textDark)),
                   ],
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Register button
                 SizedBox(
                   height: 56,
@@ -205,7 +210,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: AppTheme.accentGold, width: 2),
+                      side: const BorderSide(
+                        color: AppTheme.accentGold,
+                        width: 2,
+                      ),
                       foregroundColor: AppTheme.accentGold,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
@@ -216,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text('CREATE ACCOUNT'),
                   ),
                 ),
-                
+
                 const SizedBox(height: 24),
               ],
             ),

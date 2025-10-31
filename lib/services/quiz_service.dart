@@ -39,7 +39,7 @@ class QuizService {
   ];
 
   // Total: 37 comprehensive quizzes across 11 categories and all difficulty levels
-  
+
   List<Quiz> getQuizzesByCategory(QuizCategory category) {
     return _allQuizzes.where((quiz) => quiz.category == category).toList();
   }
@@ -65,7 +65,9 @@ class QuizService {
   }
 
   List<Quiz> getUnlockedQuizzes(int totalScore) {
-    return _allQuizzes.where((quiz) => totalScore >= quiz.requiredScore).toList();
+    return _allQuizzes
+        .where((quiz) => totalScore >= quiz.requiredScore)
+        .toList();
   }
 
   Future<List<QuizResult>> getUserResults(String userId) async {

@@ -10,9 +10,7 @@ class QuizHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('QUIZ HISTORY'),
-      ),
+      appBar: AppBar(title: const Text('QUIZ HISTORY')),
       body: Consumer<QuizProvider>(
         builder: (context, quizProvider, child) {
           final results = quizProvider.userResults;
@@ -22,11 +20,7 @@ class QuizHistoryScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.history,
-                    size: 80,
-                    color: AppTheme.textGray,
-                  ),
+                  Icon(Icons.history, size: 80, color: AppTheme.textGray),
                   SizedBox(height: 16),
                   Text(
                     'NO QUIZ HISTORY YET',
@@ -40,10 +34,7 @@ class QuizHistoryScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   Text(
                     'Complete your first quiz to see it here',
-                    style: TextStyle(
-                      color: AppTheme.textGray,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: AppTheme.textGray, fontSize: 14),
                   ),
                 ],
               ),
@@ -56,7 +47,7 @@ class QuizHistoryScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final result = results[index];
               final quiz = quizProvider.getQuizById(result.quizId);
-              
+
               if (quiz == null) return const SizedBox.shrink();
 
               final passed = result.isPassed(quiz.passingScore);
@@ -67,7 +58,7 @@ class QuizHistoryScreen extends StatelessWidget {
                   color: AppTheme.primaryMedium,
                   borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
                   border: Border.all(
-                    color: passed 
+                    color: passed
                         ? AppTheme.success.withOpacity(0.3)
                         : AppTheme.error.withOpacity(0.3),
                     width: 1,
@@ -92,19 +83,23 @@ class QuizHistoryScreen extends StatelessWidget {
                                 width: 48,
                                 height: 48,
                                 decoration: BoxDecoration(
-                                  color: passed 
+                                  color: passed
                                       ? AppTheme.success.withOpacity(0.1)
                                       : AppTheme.error.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                                  borderRadius: BorderRadius.circular(
+                                    AppTheme.sharpRadius,
+                                  ),
                                 ),
                                 child: Icon(
                                   _getCategoryIcon(quiz.category),
-                                  color: passed ? AppTheme.success : AppTheme.error,
+                                  color: passed
+                                      ? AppTheme.success
+                                      : AppTheme.error,
                                   size: 24,
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              
+
                               // Quiz info
                               Expanded(
                                 child: Column(
@@ -132,7 +127,7 @@ class QuizHistoryScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              
+
                               // Score badge
                               Container(
                                 padding: const EdgeInsets.symmetric(
@@ -140,15 +135,19 @@ class QuizHistoryScreen extends StatelessWidget {
                                   vertical: 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: passed 
+                                  color: passed
                                       ? AppTheme.success.withOpacity(0.2)
                                       : AppTheme.error.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                                  borderRadius: BorderRadius.circular(
+                                    AppTheme.sharpRadius,
+                                  ),
                                 ),
                                 child: Text(
                                   '${result.percentage.toStringAsFixed(0)}%',
                                   style: TextStyle(
-                                    color: passed ? AppTheme.success : AppTheme.error,
+                                    color: passed
+                                        ? AppTheme.success
+                                        : AppTheme.error,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -156,15 +155,16 @@ class QuizHistoryScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          
+
                           const SizedBox(height: 12),
-                          
+
                           // Stats row
                           Row(
                             children: [
                               _MiniStat(
                                 icon: Icons.check_circle_outline,
-                                value: '${result.correctAnswers}/${result.totalQuestions}',
+                                value:
+                                    '${result.correctAnswers}/${result.totalQuestions}',
                                 color: AppTheme.success,
                               ),
                               const SizedBox(width: 16),
@@ -181,9 +181,9 @@ class QuizHistoryScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          
+
                           const SizedBox(height: 12),
-                          
+
                           // Date
                           Row(
                             children: [
@@ -217,7 +217,7 @@ class QuizHistoryScreen extends StatelessWidget {
 
   void _showResultDetails(BuildContext context, QuizResult result, Quiz quiz) {
     final passed = result.isPassed(quiz.passingScore);
-    
+
     showModalBottomSheet(
       context: context,
       backgroundColor: AppTheme.primaryDark,
@@ -267,9 +267,9 @@ class QuizHistoryScreen extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 24),
-            
+
             _DetailRow(
               label: 'Score',
               value: '${result.score} / ${result.totalPoints} points',
@@ -397,11 +397,7 @@ class _MiniStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 14,
-          color: color,
-        ),
+        Icon(icon, size: 14, color: color),
         const SizedBox(width: 4),
         Text(
           value,
@@ -420,10 +416,7 @@ class _DetailRow extends StatelessWidget {
   final String label;
   final String value;
 
-  const _DetailRow({
-    required this.label,
-    required this.value,
-  });
+  const _DetailRow({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -432,10 +425,7 @@ class _DetailRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            color: AppTheme.textGray,
-            fontSize: 14,
-          ),
+          style: const TextStyle(color: AppTheme.textGray, fontSize: 14),
         ),
         Text(
           value,

@@ -22,7 +22,8 @@ class QuizProvider with ChangeNotifier {
   List<QuizResult> get userResults => _userResults;
 
   Question? get currentQuestion {
-    if (_currentQuiz == null || _currentQuestionIndex >= _currentQuiz!.questions.length) {
+    if (_currentQuiz == null ||
+        _currentQuestionIndex >= _currentQuiz!.questions.length) {
       return null;
     }
     return _currentQuiz!.questions[_currentQuestionIndex];
@@ -51,16 +52,15 @@ class QuizProvider with ChangeNotifier {
   }
 
   bool isQuizCompleted(String quizId) {
-    return _userResults.any((result) => 
-      result.quizId == quizId && 
-      result.percentage >= 100
+    return _userResults.any(
+      (result) => result.quizId == quizId && result.percentage >= 100,
     );
   }
 
   QuizResult? getBestResult(String quizId) {
     final results = _userResults.where((r) => r.quizId == quizId).toList();
     if (results.isEmpty) return null;
-    
+
     results.sort((a, b) => b.score.compareTo(a.score));
     return results.first;
   }
@@ -142,13 +142,13 @@ class QuizProvider with ChangeNotifier {
 
     _isQuizActive = false;
     _quizService.submitQuizResult(result);
-    
+
     // Add to history (keep last 50)
     _userResults.insert(0, result);
     if (_userResults.length > 50) {
       _userResults.removeLast();
     }
-    
+
     notifyListeners();
 
     return result;

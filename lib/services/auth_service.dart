@@ -8,16 +8,16 @@ class AuthService {
   static const String _userKey = 'user_data';
 
   // Simulate API calls (replace with real API in production)
-  
+
   Future<User?> login(String email, String password) async {
     // Simulate network delay
     await Future.delayed(const Duration(seconds: 1));
-    
+
     // Simple validation for demo (replace with real API)
     if (password.length < 6) {
       throw Exception('Invalid credentials');
     }
-    
+
     // Create mock user
     final user = User(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -26,30 +26,30 @@ class AuthService {
       totalScore: 0,
       quizzesCompleted: 0,
     );
-    
+
     // Store auth token
     await _secureStorage.write(key: _tokenKey, value: 'mock_token_${user.id}');
-    
+
     // Store user data
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userKey, user.toJson().toString());
-    
+
     return user;
   }
 
   Future<User?> register(String email, String username, String password) async {
     // Simulate network delay
     await Future.delayed(const Duration(seconds: 1));
-    
+
     // Simple validation
     if (password.length < 6) {
       throw Exception('Password must be at least 6 characters');
     }
-    
+
     if (username.length < 3) {
       throw Exception('Username must be at least 3 characters');
     }
-    
+
     // Create new user
     final user = User(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -58,14 +58,14 @@ class AuthService {
       totalScore: 0,
       quizzesCompleted: 0,
     );
-    
+
     // Store auth token
     await _secureStorage.write(key: _tokenKey, value: 'mock_token_${user.id}');
-    
+
     // Store user data
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userKey, user.toJson().toString());
-    
+
     return user;
   }
 
@@ -73,6 +73,15 @@ class AuthService {
     await _secureStorage.delete(key: _tokenKey);
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_userKey);
+  }
+
+  Future<void> deleteProfile() async {
+    // Clear all secure storage
+    await _secureStorage.deleteAll();
+
+    // Clear all shared preferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 
   Future<String?> getToken() async {

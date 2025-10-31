@@ -33,11 +33,7 @@ class QuizListScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.quiz,
-                      size: 64,
-                      color: AppTheme.textDark,
-                    ),
+                    Icon(Icons.quiz, size: 64, color: AppTheme.textDark),
                     const SizedBox(height: 16),
                     Text(
                       'No quizzes available',
@@ -51,11 +47,14 @@ class QuizListScreen extends StatelessWidget {
             : ListView.separated(
                 padding: const EdgeInsets.all(20),
                 itemCount: quizzes.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 16),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   final quiz = quizzes[index];
                   // Get global index of this quiz
-                  final globalIndex = allQuizzes.indexWhere((q) => q.id == quiz.id);
+                  final globalIndex = allQuizzes.indexWhere(
+                    (q) => q.id == quiz.id,
+                  );
                   final isLocked = globalIndex >= unlockedCount;
                   final isCompleted = quizProvider.isQuizCompleted(quiz.id);
                   final bestResult = quizProvider.getBestResult(quiz.id);
@@ -108,7 +107,9 @@ class _QuizCard extends StatelessWidget {
             ? () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Reach level $requiredLevel to unlock this quiz'),
+                    content: Text(
+                      'Reach level $requiredLevel to unlock this quiz',
+                    ),
                     backgroundColor: AppTheme.error,
                     behavior: SnackBarBehavior.floating,
                   ),
@@ -128,7 +129,7 @@ class _QuizCard extends StatelessWidget {
             color: AppTheme.primaryMedium,
             borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
             border: Border.all(
-              color: isLocked 
+              color: isLocked
                   ? AppTheme.textGray.withOpacity(0.3)
                   : AppTheme.primaryLight,
               width: 1,
@@ -141,7 +142,9 @@ class _QuizCard extends StatelessWidget {
                 children: [
                   // Title
                   Padding(
-                    padding: EdgeInsets.only(right: (isLocked || isCompleted) ? 100.0 : 0.0),
+                    padding: EdgeInsets.only(
+                      right: (isLocked || isCompleted) ? 100.0 : 0.0,
+                    ),
                     child: Text(
                       quiz.title.toUpperCase(),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -152,9 +155,9 @@ class _QuizCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  
+
                   const SizedBox(height: 12),
-                  
+
                   // Stats row
                   Row(
                     children: [
@@ -163,10 +166,7 @@ class _QuizCard extends StatelessWidget {
                         label: '$questionCount Questions',
                       ),
                       const SizedBox(width: 16),
-                      _QuizStat(
-                        icon: Icons.timer,
-                        label: '$minutes min',
-                      ),
+                      _QuizStat(icon: Icons.timer, label: '$minutes min'),
                       const SizedBox(width: 16),
                       _QuizStat(
                         icon: Icons.flag,
@@ -174,12 +174,15 @@ class _QuizCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   // Points
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppTheme.primaryLight,
                       borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
@@ -196,7 +199,7 @@ class _QuizCard extends StatelessWidget {
                   ),
                 ],
               ),
-              
+
               // Lock overlay
               if (isLocked)
                 Positioned(
@@ -211,11 +214,7 @@ class _QuizCard extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
-                          Icons.lock,
-                          size: 16,
-                          color: Colors.white,
-                        ),
+                        const Icon(Icons.lock, size: 16, color: Colors.white),
                         const SizedBox(width: 4),
                         Text(
                           'LVL $requiredLevel',
@@ -229,7 +228,7 @@ class _QuizCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              
+
               // Completed badge
               if (!isLocked && isCompleted)
                 Positioned(
@@ -274,10 +273,7 @@ class _QuizStat extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const _QuizStat({
-    required this.icon,
-    required this.label,
-  });
+  const _QuizStat({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {

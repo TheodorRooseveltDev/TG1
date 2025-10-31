@@ -23,7 +23,7 @@ class User {
   int get xpForNextLevel => level * 100;
   int get xpProgress => xp % xpForNextLevel;
   double get xpPercentage => xpProgress / xpForNextLevel;
-  
+
   // Unlock rules: Level 1-2 = 3 quizzes, Level 3-4 = 6 quizzes, Level 5+ = all
   int get unlockedQuizCount {
     if (level <= 2) return 3;
@@ -80,21 +80,18 @@ class User {
       level: level ?? this.level,
     );
   }
-  
+
   // Add XP and check for level up
   User addXP(int earnedXP) {
     int newXP = xp + earnedXP;
     int newLevel = level;
-    
+
     // Check for level ups
     while (newXP >= newLevel * 100) {
       newXP -= newLevel * 100;
       newLevel++;
     }
-    
-    return copyWith(
-      xp: newXP,
-      level: newLevel,
-    );
+
+    return copyWith(xp: newXP, level: newLevel);
   }
 }

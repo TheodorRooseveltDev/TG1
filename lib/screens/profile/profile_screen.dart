@@ -43,7 +43,9 @@ class ProfileScreen extends StatelessWidget {
                         height: 100,
                         decoration: BoxDecoration(
                           color: AppTheme.accentGold,
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
+                          ),
                         ),
                         child: Center(
                           child: Text(
@@ -56,19 +58,18 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
+
                       const SizedBox(height: 16),
-                      
+
                       // Username
                       Text(
                         user.username.toUpperCase(),
-                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                          color: AppTheme.accentGold,
-                        ),
+                        style: Theme.of(context).textTheme.displaySmall
+                            ?.copyWith(color: AppTheme.accentGold),
                       ),
-                      
+
                       const SizedBox(height: 8),
-                      
+
                       // Email
                       Text(
                         user.email,
@@ -77,9 +78,9 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Statistics
                 Container(
                   padding: const EdgeInsets.all(20),
@@ -138,9 +139,9 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Account settings
                 Container(
                   padding: const EdgeInsets.all(20),
@@ -185,9 +186,9 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Logout button
                 SizedBox(
                   width: double.infinity,
@@ -205,7 +206,7 @@ class ProfileScreen extends StatelessWidget {
                     child: const Text('LOGOUT'),
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
               ],
             ),

@@ -14,79 +14,129 @@ final customerServiceQuizzes = [
       Question(
         id: 'cs_b1_1',
         question: 'How should a dealer greet players joining the table?',
-        options: ['Ignore them', 'A friendly welcome with a smile', 'Ask about their gambling budget', 'State rules immediately'],
+        options: [
+          'Ignore them',
+          'A friendly welcome with a smile',
+          'Ask about their gambling budget',
+          'State rules immediately',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Professional dealers should greet all players warmly with a smile, creating a welcoming atmosphere.',
+        explanation:
+            'Professional dealers should greet all players warmly with a smile, creating a welcoming atmosphere.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_2',
         question: 'What should a dealer do if a player is intoxicated?',
-        options: ['Continue dealing', 'Notify floor management for proper handling', 'Refuse loudly', 'Lecture them'],
+        options: [
+          'Continue dealing',
+          'Notify floor management for proper handling',
+          'Refuse loudly',
+          'Lecture them',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should discreetly notify floor management, who are trained to handle intoxicated guests properly.',
+        explanation:
+            'Dealers should discreetly notify floor management, who are trained to handle intoxicated guests properly.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_3',
         question: 'Can dealers give gaming advice to players?',
-        options: ['Yes, always', 'No, dealers must remain neutral', 'Only to regulars', 'Only basic strategy'],
+        options: [
+          'Yes, always',
+          'No, dealers must remain neutral',
+          'Only to regulars',
+          'Only basic strategy',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers must remain neutral and not give gaming advice, as this could create liability issues.',
+        explanation:
+            'Dealers must remain neutral and not give gaming advice, as this could create liability issues.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_4',
         question: 'How should dealers handle player tips (tokes)?',
-        options: ['Pocket immediately', 'Thank player and drop in tip box per policy', 'Share secretly', 'Refuse all tips'],
+        options: [
+          'Pocket immediately',
+          'Thank player and drop in tip box per policy',
+          'Share secretly',
+          'Refuse all tips',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should thank players for tips and handle them according to casino policy, usually dropping in a designated box.',
+        explanation:
+            'Dealers should thank players for tips and handle them according to casino policy, usually dropping in a designated box.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_5',
         question: 'What is appropriate conversation at the table?',
-        options: ['Silent always', 'Professional small talk while focused on game', 'Personal conversations', 'Only promotions'],
+        options: [
+          'Silent always',
+          'Professional small talk while focused on game',
+          'Personal conversations',
+          'Only promotions',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should engage in light, professional conversation while maintaining complete focus on managing the game.',
+        explanation:
+            'Dealers should engage in light, professional conversation while maintaining complete focus on managing the game.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_6',
         question: 'How should dealers handle an angry or upset player?',
-        options: ['Argue back', 'Remain calm, professional, and call supervisor if needed', 'Ignore them', 'Match their energy'],
+        options: [
+          'Argue back',
+          'Remain calm, professional, and call supervisor if needed',
+          'Ignore them',
+          'Match their energy',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers must remain calm and professional with upset players and call a supervisor for assistance when needed.',
+        explanation:
+            'Dealers must remain calm and professional with upset players and call a supervisor for assistance when needed.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_7',
-        question: 'Should dealers discuss their personal problems at the table?',
-        options: ['Yes, it\'s fine', 'No, maintain professional boundaries', 'Only with regular players', 'Only during breaks'],
+        question:
+            'Should dealers discuss their personal problems at the table?',
+        options: [
+          'Yes, it\'s fine',
+          'No, maintain professional boundaries',
+          'Only with regular players',
+          'Only during breaks',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should maintain professional boundaries and not discuss personal issues with players at the table.',
+        explanation:
+            'Dealers should maintain professional boundaries and not discuss personal issues with players at the table.',
         points: 10,
       ),
       Question(
         id: 'cs_b1_8',
-        question: 'What should dealers do if a player asks about other players?',
-        options: ['Share all information', 'Politely decline to discuss other guests', 'Gossip freely', 'Make up stories'],
+        question:
+            'What should dealers do if a player asks about other players?',
+        options: [
+          'Share all information',
+          'Politely decline to discuss other guests',
+          'Gossip freely',
+          'Make up stories',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers must respect all guests\' privacy and should not discuss one player with another.',
+        explanation:
+            'Dealers must respect all guests\' privacy and should not discuss one player with another.',
         points: 10,
       ),
     ],
   ),
 
-  // INTERMEDIATE  
+  // INTERMEDIATE
   Quiz(
     id: 'customer_service_intermediate_1',
     title: 'Advanced Player Relations',
@@ -98,74 +148,125 @@ final customerServiceQuizzes = [
     questions: [
       Question(
         id: 'cs_i1_1',
-        question: 'How should dealers handle a player who is consistently rude?',
-        options: ['Be rude back', 'Document behavior, notify supervisor, maintain professionalism', 'Ban them', 'Ignore completely'],
+        question:
+            'How should dealers handle a player who is consistently rude?',
+        options: [
+          'Be rude back',
+          'Document behavior, notify supervisor, maintain professionalism',
+          'Ban them',
+          'Ignore completely',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should document problematic behavior, notify management, but always maintain professional conduct.',
+        explanation:
+            'Dealers should document problematic behavior, notify management, but always maintain professional conduct.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_2',
         question: 'What is "player rating" and why is it important?',
-        options: ['Skill assessment', 'Tracking play for comps and rewards', 'Security measure', 'Game difficulty'],
+        options: [
+          'Skill assessment',
+          'Tracking play for comps and rewards',
+          'Security measure',
+          'Game difficulty',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Player rating tracks betting patterns to determine comp eligibility and player value to the casino.',
+        explanation:
+            'Player rating tracks betting patterns to determine comp eligibility and player value to the casino.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_3',
         question: 'How should dealers handle language barriers?',
-        options: ['Refuse service', 'Use clear gestures, speak slowly, get translator if needed', 'Speak louder', 'Make fun of them'],
+        options: [
+          'Refuse service',
+          'Use clear gestures, speak slowly, get translator if needed',
+          'Speak louder',
+          'Make fun of them',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should use clear gestures, speak slowly and clearly, and request translator assistance when needed.',
+        explanation:
+            'Dealers should use clear gestures, speak slowly and clearly, and request translator assistance when needed.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_4',
         question: 'What should dealers do if they suspect problem gambling?',
-        options: ['Nothing', 'Discreetly inform management for intervention resources', 'Tell the player to stop', 'Lecture them'],
+        options: [
+          'Nothing',
+          'Discreetly inform management for intervention resources',
+          'Tell the player to stop',
+          'Lecture them',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers should discreetly inform management who can offer responsible gaming resources and assistance.',
+        explanation:
+            'Dealers should discreetly inform management who can offer responsible gaming resources and assistance.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_5',
-        question: 'How should dealers handle requests for "change of cards" or "new shoe"?',
-        options: ['Always comply', 'Follow house policy, usually requires supervisor approval', 'Refuse all requests', 'Let players decide'],
+        question:
+            'How should dealers handle requests for "change of cards" or "new shoe"?',
+        options: [
+          'Always comply',
+          'Follow house policy, usually requires supervisor approval',
+          'Refuse all requests',
+          'Let players decide',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Card/shoe changes typically require supervisor approval and must follow established house policies.',
+        explanation:
+            'Card/shoe changes typically require supervisor approval and must follow established house policies.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_6',
         question: 'What is appropriate body language at the table?',
-        options: ['Slouch casually', 'Upright posture, open gestures, friendly expression', 'Cross arms', 'Look away often'],
+        options: [
+          'Slouch casually',
+          'Upright posture, open gestures, friendly expression',
+          'Cross arms',
+          'Look away often',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Professional dealers maintain upright posture, use open body language, and maintain friendly, engaged expressions.',
+        explanation:
+            'Professional dealers maintain upright posture, use open body language, and maintain friendly, engaged expressions.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_7',
         question: 'How should dealers handle celebrity or VIP players?',
-        options: ['Give special treatment', 'Treat exactly like all other players professionally', 'Ask for autographs', 'Announce their presence'],
+        options: [
+          'Give special treatment',
+          'Treat exactly like all other players professionally',
+          'Ask for autographs',
+          'Announce their presence',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'All players, including VIPs and celebrities, should receive the same professional, courteous treatment.',
+        explanation:
+            'All players, including VIPs and celebrities, should receive the same professional, courteous treatment.',
         points: 10,
       ),
       Question(
         id: 'cs_i1_8',
-        question: 'What should dealers do if players become romantically interested in them?',
-        options: ['Flirt back', 'Maintain professional boundaries, redirect focus to game', 'Exchange numbers', 'Report immediately'],
+        question:
+            'What should dealers do if players become romantically interested in them?',
+        options: [
+          'Flirt back',
+          'Maintain professional boundaries, redirect focus to game',
+          'Exchange numbers',
+          'Report immediately',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.customerService,
-        explanation: 'Dealers must maintain strict professional boundaries and politely redirect any romantic advances back to the game.',
+        explanation:
+            'Dealers must maintain strict professional boundaries and politely redirect any romantic advances back to the game.',
         points: 10,
       ),
     ],
@@ -185,19 +286,31 @@ final gameRulesQuizzes = [
       Question(
         id: 'gr_b1_1',
         question: 'In Blackjack, when must the dealer hit?',
-        options: ['On any hand', 'When hand totals 16 or less', 'Only when player asks', 'Never'],
+        options: [
+          'On any hand',
+          'When hand totals 16 or less',
+          'Only when player asks',
+          'Never',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Dealers must hit on 16 or less and stand on 17 or more (soft 17 rules may vary).',
+        explanation:
+            'Dealers must hit on 16 or less and stand on 17 or more (soft 17 rules may vary).',
         points: 10,
       ),
       Question(
         id: 'gr_b1_2',
         question: 'What is a "natural" or "blackjack" hand?',
-        options: ['Any 21', 'Three sevens', 'Ace and 10-value card as first two cards', 'Five cards totaling 21'],
+        options: [
+          'Any 21',
+          'Three sevens',
+          'Ace and 10-value card as first two cards',
+          'Five cards totaling 21',
+        ],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'A natural blackjack is an Ace and a 10-value card (10, J, Q, K) dealt as the first two cards.',
+        explanation:
+            'A natural blackjack is an Ace and a 10-value card (10, J, Q, K) dealt as the first two cards.',
         points: 10,
       ),
       Question(
@@ -206,52 +319,83 @@ final gameRulesQuizzes = [
         options: ['Even money (1:1)', '3:2', '2:1', '6:5'],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Traditional blackjack pays 3:2, though some casinos offer 6:5 (less favorable for players).',
+        explanation:
+            'Traditional blackjack pays 3:2, though some casinos offer 6:5 (less favorable for players).',
         points: 10,
       ),
       Question(
         id: 'gr_b1_4',
         question: 'When can a player "double down"?',
-        options: ['Anytime', 'Only on their first two cards', 'Only on 11', 'After splitting'],
+        options: [
+          'Anytime',
+          'Only on their first two cards',
+          'Only on 11',
+          'After splitting',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Players can double down on their first two cards, doubling their bet and receiving exactly one more card.',
+        explanation:
+            'Players can double down on their first two cards, doubling their bet and receiving exactly one more card.',
         points: 10,
       ),
       Question(
         id: 'gr_b1_5',
         question: 'What happens if both dealer and player have blackjack?',
-        options: ['Player wins', 'Dealer wins', 'Push (tie) - bet returned', 'Player gets half bet'],
+        options: [
+          'Player wins',
+          'Dealer wins',
+          'Push (tie) - bet returned',
+          'Player gets half bet',
+        ],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'When both have blackjack, it\'s a push (tie) and the player\'s original bet is returned.',
+        explanation:
+            'When both have blackjack, it\'s a push (tie) and the player\'s original bet is returned.',
         points: 10,
       ),
       Question(
         id: 'gr_b1_6',
         question: 'What does "insurance" mean in blackjack?',
-        options: ['Card protection', 'Side bet when dealer shows Ace', 'Free replay', 'Bonus bet'],
+        options: [
+          'Card protection',
+          'Side bet when dealer shows Ace',
+          'Free replay',
+          'Bonus bet',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Insurance is a side bet (up to half original bet) offered when dealer shows an Ace, paying 2:1 if dealer has blackjack.',
+        explanation:
+            'Insurance is a side bet (up to half original bet) offered when dealer shows an Ace, paying 2:1 if dealer has blackjack.',
         points: 10,
       ),
       Question(
         id: 'gr_b1_7',
         question: 'Can players touch their cards in a shoe game?',
-        options: ['Yes, always', 'No, cards dealt face-up shouldn\'t be touched', 'Only with permission', 'Only to split'],
+        options: [
+          'Yes, always',
+          'No, cards dealt face-up shouldn\'t be touched',
+          'Only with permission',
+          'Only to split',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'In shoe games, cards are dealt face-up and players should not touch them. Pitch games allow card handling.',
+        explanation:
+            'In shoe games, cards are dealt face-up and players should not touch them. Pitch games allow card handling.',
         points: 10,
       ),
       Question(
         id: 'gr_b1_8',
         question: 'What is "surrender" in blackjack?',
-        options: ['Giving up completely', 'Forfeiting hand for half the bet back', 'Changing dealers', 'Taking insurance'],
+        options: [
+          'Giving up completely',
+          'Forfeiting hand for half the bet back',
+          'Changing dealers',
+          'Taking insurance',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Surrender allows players to forfeit their hand and receive half their bet back before playing the hand.',
+        explanation:
+            'Surrender allows players to forfeit their hand and receive half their bet back before playing the hand.',
         points: 10,
       ),
     ],
@@ -270,55 +414,92 @@ final gameRulesQuizzes = [
       Question(
         id: 'gr_i1_1',
         question: 'What must a roulette dealer do before each spin?',
-        options: ['Count bets', 'Call "no more bets" and wave hand over table', 'Check wheel', 'Clean ball'],
+        options: [
+          'Count bets',
+          'Call "no more bets" and wave hand over table',
+          'Check wheel',
+          'Clean ball',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Dealers must clearly announce "no more bets" and make a hand gesture over the table before the ball drops.',
+        explanation:
+            'Dealers must clearly announce "no more bets" and make a hand gesture over the table before the ball drops.',
         points: 10,
       ),
       Question(
         id: 'gr_i1_2',
         question: 'How should a roulette dealer call out the winning number?',
-        options: ['Point silently', 'Say number only', 'Announce number, color, and odd/even clearly', 'Write it'],
+        options: [
+          'Point silently',
+          'Say number only',
+          'Announce number, color, and odd/even clearly',
+          'Write it',
+        ],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'Dealers should clearly announce the complete result: number, color (red/black), and whether it\'s odd/even.',
+        explanation:
+            'Dealers should clearly announce the complete result: number, color (red/black), and whether it\'s odd/even.',
         points: 10,
       ),
       Question(
         id: 'gr_i1_3',
         question: 'What is the purpose of the dolly in roulette?',
-        options: ['Spin wheel', 'Mark winning number after ball lands', 'Clear bets', 'Hold ball'],
+        options: [
+          'Spin wheel',
+          'Mark winning number after ball lands',
+          'Clear bets',
+          'Hold ball',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'The dolly marks the winning number to indicate the result and prevent betting on that area.',
+        explanation:
+            'The dolly marks the winning number to indicate the result and prevent betting on that area.',
         points: 10,
       ),
       Question(
         id: 'gr_i1_4',
         question: 'In what order should roulette payouts be made?',
-        options: ['Largest first', 'Inside bets first', 'Outside bets first, then inside bets', 'Clockwise'],
+        options: [
+          'Largest first',
+          'Inside bets first',
+          'Outside bets first, then inside bets',
+          'Clockwise',
+        ],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'Dealers typically pay outside bets first (simpler) then proceed to inside bets (more complex).',
+        explanation:
+            'Dealers typically pay outside bets first (simpler) then proceed to inside bets (more complex).',
         points: 10,
       ),
       Question(
         id: 'gr_i1_5',
-        question: 'Why do roulette tables use different colored chips per player?',
-        options: ['Aesthetics', 'Prevent disputes about bet ownership', 'Track spending', 'Tradition'],
+        question:
+            'Why do roulette tables use different colored chips per player?',
+        options: [
+          'Aesthetics',
+          'Prevent disputes about bet ownership',
+          'Track spending',
+          'Tradition',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Different colored chips prevent confusion and disputes about which bets belong to whom.',
+        explanation:
+            'Different colored chips prevent confusion and disputes about which bets belong to whom.',
         points: 10,
       ),
       Question(
         id: 'gr_i1_6',
         question: 'What is a "straight up" bet in roulette?',
-        options: ['Betting on red/black', 'Betting on single number', 'Betting on row', 'Betting on column'],
+        options: [
+          'Betting on red/black',
+          'Betting on single number',
+          'Betting on row',
+          'Betting on column',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'A straight up bet is wagering on a single number, paying 35:1 if it wins.',
+        explanation:
+            'A straight up bet is wagering on a single number, paying 35:1 if it wins.',
         points: 10,
       ),
       Question(
@@ -327,16 +508,23 @@ final gameRulesQuizzes = [
         options: ['36', '37', '38', '40'],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'American roulette has 38 numbers: 1-36, plus 0 and 00 (European has 37 with only one 0).',
+        explanation:
+            'American roulette has 38 numbers: 1-36, plus 0 and 00 (European has 37 with only one 0).',
         points: 10,
       ),
       Question(
         id: 'gr_i1_8',
         question: 'What is a "neighbor bet" in roulette?',
-        options: ['Betting for the person next to you', 'Betting on numbers adjacent on the wheel', 'Betting same as neighbor', 'Social bet type'],
+        options: [
+          'Betting for the person next to you',
+          'Betting on numbers adjacent on the wheel',
+          'Betting same as neighbor',
+          'Social bet type',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'A neighbor bet covers a number and the numbers adjacent to it on the physical roulette wheel.',
+        explanation:
+            'A neighbor bet covers a number and the numbers adjacent to it on the physical roulette wheel.',
         points: 10,
       ),
     ],
@@ -358,43 +546,68 @@ final gameRulesQuizzes = [
         options: ['1', '2', '3', '5'],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Each player receives 2 hole cards face down at the start of a Texas Hold\'em hand.',
+        explanation:
+            'Each player receives 2 hole cards face down at the start of a Texas Hold\'em hand.',
         points: 10,
       ),
       Question(
         id: 'gr_a1_2',
         question: 'What is the dealer button in poker?',
-        options: ['Emergency button', 'Marker showing dealer position', 'Chip container', 'Shuffler control'],
+        options: [
+          'Emergency button',
+          'Marker showing dealer position',
+          'Chip container',
+          'Shuffler control',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'The dealer button marks which position is the theoretical dealer for that hand.',
+        explanation:
+            'The dealer button marks which position is the theoretical dealer for that hand.',
         points: 10,
       ),
       Question(
         id: 'gr_a1_3',
         question: 'How should a poker dealer handle the rake?',
-        options: ['After every bet', 'According to house rules after each hand', 'Never', 'End of game'],
+        options: [
+          'After every bet',
+          'According to house rules after each hand',
+          'Never',
+          'End of game',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'The rake (house fee) is collected according to house rules, typically after each completed hand.',
+        explanation:
+            'The rake (house fee) is collected according to house rules, typically after each completed hand.',
         points: 10,
       ),
       Question(
         id: 'gr_a1_4',
         question: 'What should a dealer do if two cards are dealt face up?',
-        options: ['Continue', 'Declare misdeal', 'Player decides', 'Shuffle immediately'],
+        options: [
+          'Continue',
+          'Declare misdeal',
+          'Player decides',
+          'Shuffle immediately',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'If multiple cards are exposed during the deal, it\'s typically declared a misdeal and cards are reshuffled.',
+        explanation:
+            'If multiple cards are exposed during the deal, it\'s typically declared a misdeal and cards are reshuffled.',
         points: 10,
       ),
       Question(
         id: 'gr_a1_5',
         question: 'What is "string betting" and how should dealers handle it?',
-        options: ['Valid style', 'Illegal bet in multiple motions - must be called out', 'Chip stack type', 'Advanced strategy'],
+        options: [
+          'Valid style',
+          'Illegal bet in multiple motions - must be called out',
+          'Chip stack type',
+          'Advanced strategy',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'String betting (betting in multiple motions) is not allowed. Dealers must enforce "one motion" rule.',
+        explanation:
+            'String betting (betting in multiple motions) is not allowed. Dealers must enforce "one motion" rule.',
         points: 10,
       ),
       Question(
@@ -403,16 +616,23 @@ final gameRulesQuizzes = [
         options: ['Fold', 'Bet all remaining chips', 'Check', 'Call'],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'Going all-in means betting all of your remaining chips on the current hand.',
+        explanation:
+            'Going all-in means betting all of your remaining chips on the current hand.',
         points: 10,
       ),
       Question(
         id: 'gr_a1_7',
         question: 'What is the "flop" in Texas Hold\'em?',
-        options: ['First card', 'First three community cards', 'Fourth card', 'Last card'],
+        options: [
+          'First card',
+          'First three community cards',
+          'Fourth card',
+          'Last card',
+        ],
         correctAnswerIndex: 1,
         category: QuizCategory.gameRules,
-        explanation: 'The flop is the first three community cards dealt face-up simultaneously.',
+        explanation:
+            'The flop is the first three community cards dealt face-up simultaneously.',
         points: 10,
       ),
       Question(
@@ -421,7 +641,8 @@ final gameRulesQuizzes = [
         options: ['Straight', 'Three of a kind', 'Full house', 'Two pair'],
         correctAnswerIndex: 2,
         category: QuizCategory.gameRules,
-        explanation: 'A full house (three of a kind + a pair) beats a flush. Straight flush and royal flush also beat it.',
+        explanation:
+            'A full house (three of a kind + a pair) beats a flush. Straight flush and royal flush also beat it.',
         points: 10,
       ),
     ],

@@ -37,13 +37,15 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
   void _submitQuiz() {
     final quizProvider = context.read<QuizProvider>();
     final authProvider = context.read<AuthProvider>();
-    
+
     if (authProvider.currentUser != null) {
       // Check if already completed BEFORE submitting
-      final wasAlreadyCompleted = quizProvider.isQuizCompleted(quizProvider.currentQuiz!.id);
-      
+      final wasAlreadyCompleted = quizProvider.isQuizCompleted(
+        quizProvider.currentQuiz!.id,
+      );
+
       final result = quizProvider.submitQuiz(authProvider.currentUser!.id);
-      
+
       if (result != null && mounted) {
         Navigator.pushReplacement(
           context,
@@ -90,10 +92,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
         ),
         content: const Text(
           'Are you sure you want to quit? Your progress will be lost and you won\'t earn any XP.',
-          style: TextStyle(
-            color: AppTheme.textLight,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: AppTheme.textLight, fontSize: 14),
         ),
         actions: [
           TextButton(
@@ -102,9 +101,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.error,
-            ),
+            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.error),
             child: const Text('QUIT'),
           ),
         ],
@@ -205,12 +202,13 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                   color: AppTheme.primaryLight,
                   child: FractionallySizedBox(
                     alignment: Alignment.centerLeft,
-                    widthFactor: (quizProvider.currentQuestionIndex + 1) /
+                    widthFactor:
+                        (quizProvider.currentQuestionIndex + 1) /
                         (quizProvider.currentQuiz?.questions.length ?? 1),
                     child: Container(color: AppTheme.accentGold),
                   ),
                 ),
-                
+
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(20),
@@ -227,20 +225,21 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                             letterSpacing: 1.0,
                           ),
                         ),
-                        
+
                         const SizedBox(height: 16),
-                        
+
                         // Question text
                         Text(
                           currentQuestion.question,
-                          style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            color: AppTheme.textLight,
-                            fontSize: 22,
-                          ),
+                          style: Theme.of(context).textTheme.displaySmall
+                              ?.copyWith(
+                                color: AppTheme.textLight,
+                                fontSize: 22,
+                              ),
                         ),
-                        
+
                         const SizedBox(height: 32),
-                        
+
                         // Answer options
                         ...List.generate(
                           currentQuestion.options.length,
@@ -249,8 +248,10 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                             child: _AnswerOption(
                               text: currentQuestion.options[index],
                               index: index,
-                              isSelected: quizProvider.userAnswers[
-                                  quizProvider.currentQuestionIndex] == index,
+                              isSelected:
+                                  quizProvider.userAnswers[quizProvider
+                                      .currentQuestionIndex] ==
+                                  index,
                               onTap: () {
                                 quizProvider.answerQuestion(index);
                               },
@@ -261,7 +262,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                     ),
                   ),
                 ),
-                
+
                 // Navigation buttons
                 Container(
                   padding: const EdgeInsets.all(20),
@@ -312,7 +313,9 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                               }
                             },
                             child: Text(
-                              quizProvider.isLastQuestion ? 'SUBMIT QUIZ' : 'NEXT',
+                              quizProvider.isLastQuestion
+                                  ? 'SUBMIT QUIZ'
+                                  : 'NEXT',
                             ),
                           ),
                         ),
@@ -400,7 +403,9 @@ class _AnswerOption extends StatelessWidget {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: isSelected ? AppTheme.primaryDark : AppTheme.primaryLight,
+                color: isSelected
+                    ? AppTheme.primaryDark
+                    : AppTheme.primaryLight,
                 borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
               ),
               child: Center(

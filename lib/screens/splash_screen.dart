@@ -34,11 +34,8 @@ class _SplashScreenState extends State<SplashScreen>
         fit: StackFit.expand,
         children: [
           // Background splash image
-          Image.asset(
-            'assets/splash.png',
-            fit: BoxFit.cover,
-          ),
-          
+          Image.asset('assets/splash.png', fit: BoxFit.cover),
+
           // Custom white loader at the bottom
           Positioned(
             bottom: 80,
@@ -53,15 +50,13 @@ class _SplashScreenState extends State<SplashScreen>
                   builder: (context, child) {
                     return CustomPaint(
                       size: const Size(60, 60),
-                      painter: _CustomLoaderPainter(
-                        animation: _controller,
-                      ),
+                      painter: _CustomLoaderPainter(animation: _controller),
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Loading text
                 const Text(
                   'Loading...',
@@ -100,11 +95,12 @@ class _CustomLoaderPainter extends CustomPainter {
 
     // Draw rotating arcs
     for (int i = 0; i < 3; i++) {
-      final startAngle = (animation.value * 2 * math.pi) + (i * 2 * math.pi / 3);
+      final startAngle =
+          (animation.value * 2 * math.pi) + (i * 2 * math.pi / 3);
       final sweepAngle = math.pi * 0.5;
-      
+
       paint.color = Colors.white.withOpacity(1.0 - (i * 0.3));
-      
+
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius - (i * 8)),
         startAngle,

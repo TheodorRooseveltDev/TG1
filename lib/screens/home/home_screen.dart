@@ -46,9 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const WikiScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const WikiScreen()),
               );
             },
           ),
@@ -58,234 +56,260 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CasinoBlobBackground(
         child: SafeArea(
           child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // User welcome card
-              Consumer<AuthProvider>(
-                builder: (context, authProvider, child) {
-                  return Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primaryMedium,
-                      borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                      border: Border.all(
-                        color: AppTheme.accentGold.withOpacity(0.3),
-                        width: 1,
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // User welcome card
+                Consumer<AuthProvider>(
+                  builder: (context, authProvider, child) {
+                    return Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: AppTheme.primaryMedium,
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.sharpRadius,
+                        ),
+                        border: Border.all(
+                          color: AppTheme.accentGold.withOpacity(0.3),
+                          width: 1,
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: AppTheme.accentGold.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.accentGold.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(
+                                    AppTheme.sharpRadius,
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.casino,
+                                  color: AppTheme.accentGold,
+                                  size: 28,
+                                ),
                               ),
-                              child: const Icon(
-                                Icons.casino,
-                                color: AppTheme.accentGold,
-                                size: 28,
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Welcome back',
+                                      style: TextStyle(
+                                        color: AppTheme.textGray,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      authProvider.currentUser?.username
+                                              .toUpperCase() ??
+                                          'PLAYER',
+                                      style: const TextStyle(
+                                        color: AppTheme.accentGold,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w900,
+                                        letterSpacing: 0.5,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 6,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.accentGold,
+                                  borderRadius: BorderRadius.circular(
+                                    AppTheme.sharpRadius,
+                                  ),
+                                ),
+                                child: Text(
+                                  'LVL ${authProvider.currentUser?.level ?? 1}',
+                                  style: const TextStyle(
+                                    color: AppTheme.primaryDark,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 16),
+
+                          // XP Bar
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
-                                    'Welcome back',
+                                    'EXPERIENCE',
                                     style: TextStyle(
                                       color: AppTheme.textGray,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 1.0,
                                     ),
                                   ),
-                                  const SizedBox(height: 2),
                                   Text(
-                                    authProvider.currentUser?.username.toUpperCase() ?? 'PLAYER',
+                                    '${authProvider.currentUser?.xp ?? 0}/${authProvider.currentUser?.xpForNextLevel ?? 100} XP',
                                     style: const TextStyle(
-                                      color: AppTheme.accentGold,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w900,
-                                      letterSpacing: 0.5,
+                                      color: AppTheme.textLight,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ],
                               ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: AppTheme.accentGold,
-                                borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                              ),
-                              child: Text(
-                                'LVL ${authProvider.currentUser?.level ?? 1}',
-                                style: const TextStyle(
-                                  color: AppTheme.primaryDark,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900,
+                              const SizedBox(height: 8),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.sharpRadius,
+                                ),
+                                child: LinearProgressIndicator(
+                                  value:
+                                      authProvider.currentUser?.xpPercentage ??
+                                      0.0,
+                                  backgroundColor: AppTheme.primaryDark,
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                        AppTheme.accentGold,
+                                      ),
+                                  minHeight: 10,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        
-                        const SizedBox(height: 16),
-                        
-                        // XP Bar
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'EXPERIENCE',
-                                  style: TextStyle(
-                                    color: AppTheme.textGray,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w700,
-                                    letterSpacing: 1.0,
-                                  ),
-                                ),
-                                Text(
-                                  '${authProvider.currentUser?.xp ?? 0}/${authProvider.currentUser?.xpForNextLevel ?? 100} XP',
-                                  style: const TextStyle(
-                                    color: AppTheme.textLight,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                              child: LinearProgressIndicator(
-                                value: authProvider.currentUser?.xpPercentage ?? 0.0,
-                                backgroundColor: AppTheme.primaryDark,
-                                valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.accentGold),
-                                minHeight: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                        
-                        const SizedBox(height: 16),
-                        
-                        // Stats row
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _SimpleStatCard(
-                                icon: Icons.emoji_events,
-                                label: 'SCORE',
-                                value: authProvider.currentUser?.totalScore.toString() ?? '0',
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _SimpleStatCard(
-                                icon: Icons.check_circle,
-                                label: 'DONE',
-                                value: authProvider.currentUser?.quizzesCompleted.toString() ?? '0',
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: _SimpleStatCard(
-                                icon: Icons.lock_open,
-                                label: 'UNLOCKED',
-                                value: '${authProvider.currentUser?.unlockedQuizCount ?? 3}',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              
-              const SizedBox(height: 24),
-              
-              // Slot Machine Section
-              const _SlotMachineQuiz(),
-              
-              const SizedBox(height: 24),
-              
-              // Categories header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'BROWSE CATEGORIES',
-                    style: TextStyle(
-                      color: AppTheme.accentGold,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.0,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Show all categories screen
-                      _showAllCategories(context);
-                    },
-                    child: Row(
-                      children: const [
-                        Text(
-                          'VIEW ALL',
-                          style: TextStyle(
-                            color: AppTheme.accentGold,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                            ],
                           ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: AppTheme.accentGold,
-                          size: 16,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              
-              const SizedBox(height: 12),
-              
-              // Categories grid - Show only first 4
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 1.2,
+
+                          const SizedBox(height: 16),
+
+                          // Stats row
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _SimpleStatCard(
+                                  icon: Icons.emoji_events,
+                                  label: 'SCORE',
+                                  value:
+                                      authProvider.currentUser?.totalScore
+                                          .toString() ??
+                                      '0',
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: _SimpleStatCard(
+                                  icon: Icons.check_circle,
+                                  label: 'DONE',
+                                  value:
+                                      authProvider.currentUser?.quizzesCompleted
+                                          .toString() ??
+                                      '0',
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: _SimpleStatCard(
+                                  icon: Icons.lock_open,
+                                  label: 'UNLOCKED',
+                                  value:
+                                      '${authProvider.currentUser?.unlockedQuizCount ?? 3}',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-                itemCount: 4, // Only show first 4 categories
-                itemBuilder: (context, index) {
-                  final category = QuizCategory.values[index];
-                  return _CategoryCard(category: category);
-                },
-              ),
-              
-              const SizedBox(height: 24),
-            ],
+
+                const SizedBox(height: 24),
+
+                // Slot Machine Section
+                const _SlotMachineQuiz(),
+
+                const SizedBox(height: 24),
+
+                // Categories header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'BROWSE CATEGORIES',
+                      style: TextStyle(
+                        color: AppTheme.accentGold,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Show all categories screen
+                        _showAllCategories(context);
+                      },
+                      child: Row(
+                        children: const [
+                          Text(
+                            'VIEW ALL',
+                            style: TextStyle(
+                              color: AppTheme.accentGold,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(width: 4),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: AppTheme.accentGold,
+                            size: 16,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 12),
+
+                // Categories grid - Show only first 4
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 1.2,
+                  ),
+                  itemCount: 4, // Only show first 4 categories
+                  itemBuilder: (context, index) {
+                    final category = QuizCategory.values[index];
+                    return _CategoryCard(category: category);
+                  },
+                ),
+
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -316,10 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   topRight: Radius.circular(20),
                 ),
                 border: Border(
-                  bottom: BorderSide(
-                    color: AppTheme.accentGold,
-                    width: 2,
-                  ),
+                  bottom: BorderSide(color: AppTheme.accentGold, width: 2),
                 ),
               ),
               child: Row(
@@ -348,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            
+
             // All categories grid
             Expanded(
               child: GridView.builder(
@@ -404,10 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       color: AppTheme.accentGold.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                      border: Border.all(
-                        color: AppTheme.accentGold,
-                        width: 3,
-                      ),
+                      border: Border.all(color: AppTheme.accentGold, width: 3),
                     ),
                     child: const Icon(
                       Icons.person,
@@ -415,9 +433,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppTheme.accentGold,
                     ),
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   // Username
                   Text(
                     user?.username.toUpperCase() ?? 'GUEST',
@@ -428,12 +446,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       letterSpacing: 1.5,
                     ),
                   ),
-                  
+
                   const SizedBox(height: 8),
-                  
+
                   // Level badge
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppTheme.accentGold,
                       borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
@@ -459,9 +480,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   // Stats Row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -478,7 +499,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 30,
                         color: AppTheme.primaryLight,
                       ),
-                      _buildStatItem('QUIZZES', '${user?.unlockedQuizCount ?? 3}/${quizProvider.allQuizzes.length}'),
+                      _buildStatItem(
+                        'QUIZZES',
+                        '${user?.unlockedQuizCount ?? 3}/${quizProvider.allQuizzes.length}',
+                      ),
                     ],
                   ),
                 ],
@@ -505,7 +529,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
-                  
+
                   _buildDrawerItem(
                     context,
                     icon: Icons.history,
@@ -521,12 +545,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
-                  
+
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Divider(color: AppTheme.primaryLight, height: 1),
                   ),
-                  
+
                   _buildDrawerItem(
                     context,
                     icon: Icons.settings,
@@ -542,7 +566,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
-                  
+
                   _buildDrawerItem(
                     context,
                     icon: Icons.description,
@@ -558,7 +582,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
-                  
+
                   _buildDrawerItem(
                     context,
                     icon: Icons.privacy_tip,
@@ -583,10 +607,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(16),
               decoration: const BoxDecoration(
                 border: Border(
-                  top: BorderSide(
-                    color: AppTheme.primaryLight,
-                    width: 1,
-                  ),
+                  top: BorderSide(color: AppTheme.primaryLight, width: 1),
                 ),
               ),
               child: Column(
@@ -672,11 +693,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppTheme.accentGold.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
               ),
-              child: Icon(
-                icon,
-                color: AppTheme.accentGold,
-                size: 24,
-              ),
+              child: Icon(icon, color: AppTheme.accentGold, size: 24),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -694,10 +711,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      color: AppTheme.textGray,
-                      fontSize: 11,
-                    ),
+                    style: TextStyle(color: AppTheme.textGray, fontSize: 11),
                   ),
                 ],
               ),
@@ -811,10 +825,7 @@ class _CategoryCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.primaryMedium,
           borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-          border: Border.all(
-            color: AppTheme.primaryLight,
-            width: 1,
-          ),
+          border: Border.all(color: AppTheme.primaryLight, width: 1),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -896,7 +907,7 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
 
     // Select categories before spinning
     final selectedCats = _getRandomCategories();
-    
+
     setState(() {
       _isSpinning = true;
       _targetCategories = selectedCats; // Set target for animation
@@ -904,16 +915,16 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
 
     // Wait for animation to complete (spinning)
     await Future.delayed(const Duration(milliseconds: 2500));
-    
+
     if (mounted) {
       // Don't update _currentCategories here - let the animation finish naturally
       // Just pause to let user see the result with yellow border
       await Future.delayed(const Duration(milliseconds: 500));
-      
+
       // Show modal with smooth animation
       if (mounted) {
         await _showQuizModal();
-        
+
         // After modal closes, update current to target and remove yellow border
         if (mounted) {
           setState(() {
@@ -943,264 +954,275 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
             width: MediaQuery.of(context).size.width * 0.9,
             constraints: const BoxConstraints(maxWidth: 600),
             decoration: BoxDecoration(
-            color: AppTheme.primaryMedium,
-            borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-            border: Border.all(
-              color: AppTheme.accentGold,
-              width: 2,
+              color: AppTheme.primaryMedium,
+              borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+              border: Border.all(color: AppTheme.accentGold, width: 2),
             ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: AppTheme.primaryDark,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(AppTheme.sharpRadius - 2),
-                    topRight: Radius.circular(AppTheme.sharpRadius - 2),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Header
+                Container(
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: AppTheme.primaryDark,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(AppTheme.sharpRadius - 2),
+                      topRight: Radius.circular(AppTheme.sharpRadius - 2),
+                    ),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: AppTheme.accentGold.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                      ),
-                      child: const Icon(
-                        Icons.casino,
-                        color: AppTheme.accentGold,
-                        size: 32,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'QUICK MIX QUIZ',
-                            style: TextStyle(
-                              color: AppTheme.accentGold,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '${_getTotalQuestions()} Questions Ready',
-                            style: const TextStyle(
-                              color: AppTheme.textGray,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              // Content (scrollable)
-              Flexible(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const Text(
-                          'SELECTED CATEGORIES',
-                          style: TextStyle(
-                            color: AppTheme.textGray,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        
-                        // Categories list
-                    ..._targetCategories.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final category = entry.value;
-                      return Container(
-                        margin: EdgeInsets.only(
-                          bottom: index < _targetCategories.length - 1 ? 12 : 0,
-                        ),
-                        padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: AppTheme.primaryLight,
-                          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                          border: Border.all(
-                            color: AppTheme.primaryDark,
-                            width: 1,
+                          color: AppTheme.accentGold.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(
+                            AppTheme.sharpRadius,
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: AppTheme.accentGold.withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  _getCategoryIcon(category),
-                                  color: AppTheme.accentGold,
-                                  size: 24,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    category.title,
-                                    style: const TextStyle(
-                                      color: AppTheme.textLight,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    category.description,
-                                    style: const TextStyle(
-                                      color: AppTheme.textGray,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                    
-                    const SizedBox(height: 20),
-                    
-                    // Info box
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: AppTheme.accentGold.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                        border: Border.all(
-                          color: AppTheme.accentGold.withOpacity(0.3),
-                          width: 1,
+                        child: const Icon(
+                          Icons.casino,
+                          color: AppTheme.accentGold,
+                          size: 32,
                         ),
                       ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.lightbulb_outline,
-                            color: AppTheme.accentGold,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              'Questions will be shuffled from all selected categories',
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'QUICK MIX QUIZ',
+                              style: TextStyle(
+                                color: AppTheme.accentGold,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '${_getTotalQuestions()} Questions Ready',
                               style: const TextStyle(
-                                color: AppTheme.textLight,
+                                color: AppTheme.textGray,
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Content (scrollable)
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            'SELECTED CATEGORIES',
+                            style: TextStyle(
+                              color: AppTheme.textGray,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+
+                          // Categories list
+                          ..._targetCategories.asMap().entries.map((entry) {
+                            final index = entry.key;
+                            final category = entry.value;
+                            return Container(
+                              margin: EdgeInsets.only(
+                                bottom: index < _targetCategories.length - 1
+                                    ? 12
+                                    : 0,
+                              ),
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: AppTheme.primaryLight,
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.sharpRadius,
+                                ),
+                                border: Border.all(
+                                  color: AppTheme.primaryDark,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.accentGold.withOpacity(
+                                        0.15,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        AppTheme.sharpRadius,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Icon(
+                                        _getCategoryIcon(category),
+                                        color: AppTheme.accentGold,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          category.title,
+                                          style: const TextStyle(
+                                            color: AppTheme.textLight,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          category.description,
+                                          style: const TextStyle(
+                                            color: AppTheme.textGray,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+
+                          const SizedBox(height: 20),
+
+                          // Info box
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppTheme.accentGold.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(
+                                AppTheme.sharpRadius,
+                              ),
+                              border: Border.all(
+                                color: AppTheme.accentGold.withOpacity(0.3),
+                                width: 1,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.lightbulb_outline,
+                                  color: AppTheme.accentGold,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Text(
+                                    'Questions will be shuffled from all selected categories',
+                                    style: const TextStyle(
+                                      color: AppTheme.textLight,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
                   ),
                 ),
-              ),
-              
-              // Actions
-              Container(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: AppTheme.primaryLight,
-                      width: 1,
+
+                // Actions
+                Container(
+                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: AppTheme.primaryLight, width: 1),
                     ),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 100,
-                      height: 50,
-                      child: OutlinedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          side: const BorderSide(
-                            color: AppTheme.textGray,
-                            width: 1,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                          ),
-                        ),
-                        child: const Text(
-                          'CANCEL',
-                          style: TextStyle(
-                            color: AppTheme.textGray,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: SizedBox(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 100,
                         height: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _startMixedQuiz();
-                          },
-                          style: ElevatedButton.styleFrom(
+                        child: OutlinedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: OutlinedButton.styleFrom(
                             padding: EdgeInsets.zero,
-                            backgroundColor: AppTheme.accentGold,
+                            side: const BorderSide(
+                              color: AppTheme.textGray,
+                              width: 1,
+                            ),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                              borderRadius: BorderRadius.circular(
+                                AppTheme.sharpRadius,
+                              ),
                             ),
                           ),
                           child: const Text(
-                            'START',
+                            'CANCEL',
                             style: TextStyle(
-                              color: AppTheme.primaryDark,
-                              fontSize: 16,
+                              color: AppTheme.textGray,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700,
-                              letterSpacing: 1.2,
+                              letterSpacing: 0.8,
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _startMixedQuiz();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              backgroundColor: AppTheme.accentGold,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  AppTheme.sharpRadius,
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              'START',
+                              style: TextStyle(
+                                color: AppTheme.primaryDark,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
           ),
         ),
       ),
@@ -1248,7 +1270,7 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
 
   void _startMixedQuiz() {
     final quizProvider = context.read<QuizProvider>();
-    
+
     // Collect questions from selected categories
     List<Question> mixedQuestions = [];
     for (var category in _targetCategories) {
@@ -1273,12 +1295,10 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
 
     // Start the quiz
     quizProvider.startQuiz(mixedQuiz);
-    
+
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => const QuizPlayScreen(),
-      ),
+      MaterialPageRoute(builder: (context) => const QuizPlayScreen()),
     ).then((_) {
       // Reset slots after returning from quiz
       if (mounted) {
@@ -1295,10 +1315,7 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
       decoration: BoxDecoration(
         color: AppTheme.primaryMedium,
         borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-        border: Border.all(
-          color: AppTheme.accentGold,
-          width: 2,
-        ),
+        border: Border.all(color: AppTheme.accentGold, width: 2),
       ),
       child: Column(
         children: [
@@ -1317,20 +1334,17 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           const Text(
             'Spin the slots to get a random mix!',
-            style: TextStyle(
-              color: AppTheme.textGray,
-              fontSize: 13,
-            ),
+            style: TextStyle(color: AppTheme.textGray, fontSize: 13),
             textAlign: TextAlign.center,
           ),
-          
+
           const SizedBox(height: 24),
-          
+
           // Slot Machine Display
           Container(
             padding: const EdgeInsets.all(16),
@@ -1352,9 +1366,9 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
               }),
             ),
           ),
-          
+
           const SizedBox(height: 24),
-          
+
           // Spin Button
           SizedBox(
             width: double.infinity,
@@ -1362,7 +1376,9 @@ class _SlotMachineQuizState extends State<_SlotMachineQuiz> {
             child: ElevatedButton(
               onPressed: _isSpinning ? null : _spinSlots,
               style: ElevatedButton.styleFrom(
-                backgroundColor: _isSpinning ? AppTheme.textDark : AppTheme.accentGold,
+                backgroundColor: _isSpinning
+                    ? AppTheme.textDark
+                    : AppTheme.accentGold,
               ),
               child: _isSpinning
                   ? Row(
@@ -1415,7 +1431,8 @@ class _SlotReel extends StatefulWidget {
   State<_SlotReel> createState() => _SlotReelState();
 }
 
-class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixin {
+class _SlotReelState extends State<_SlotReel>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late double _endValue;
@@ -1424,19 +1441,16 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
   void initState() {
     super.initState();
     _calculateEndValue();
-    
+
     _controller = AnimationController(
       duration: Duration(milliseconds: 2000 + widget.delay),
       vsync: this,
     );
-    
+
     _animation = Tween<double>(
       begin: 0,
       end: _endValue,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
   }
 
   void _calculateEndValue() {
@@ -1444,11 +1458,11 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
     final currentIndex = QuizCategory.values.indexOf(widget.currentCategory);
     final targetIndex = QuizCategory.values.indexOf(widget.targetCategory);
     final totalCategories = QuizCategory.values.length;
-    
+
     // Calculate the distance forward to reach target
     int stepsToTarget = (targetIndex - currentIndex) % totalCategories;
     if (stepsToTarget < 0) stepsToTarget += totalCategories;
-    
+
     // Add at least 2 full rotations (14 steps) for visual effect + the steps to target
     _endValue = (2 * totalCategories) + stepsToTarget.toDouble();
   }
@@ -1461,10 +1475,7 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
       _animation = Tween<double>(
         begin: 0,
         end: _endValue,
-      ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ));
+      ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
       _controller.forward(from: 0);
     }
   }
@@ -1511,7 +1522,9 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
         color: AppTheme.primaryMedium,
         borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
         border: Border.all(
-          color: widget.isSpinning ? AppTheme.accentGold : AppTheme.primaryLight,
+          color: widget.isSpinning
+              ? AppTheme.accentGold
+              : AppTheme.primaryLight,
           width: 2,
         ),
       ),
@@ -1522,14 +1535,17 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
                 animation: _animation,
                 builder: (context, child) {
                   // Calculate animation: start from currentCategory, spin through all, land on targetCategory
-                  final currentIndex = QuizCategory.values.indexOf(widget.currentCategory);
+                  final currentIndex = QuizCategory.values.indexOf(
+                    widget.currentCategory,
+                  );
                   final totalCategories = QuizCategory.values.length;
-                  
+
                   // Current display index: start from current, add animation progress
                   final displayValue = currentIndex + _animation.value;
-                  final currentDisplayIndex = displayValue.floor() % totalCategories;
+                  final currentDisplayIndex =
+                      displayValue.floor() % totalCategories;
                   final offset = (displayValue % 1) * 120;
-                  
+
                   return Stack(
                     children: [
                       // Current icon scrolling out
@@ -1541,7 +1557,9 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
                           height: 120,
                           alignment: Alignment.center,
                           child: Icon(
-                            _getCategoryIcon(QuizCategory.values[currentDisplayIndex]),
+                            _getCategoryIcon(
+                              QuizCategory.values[currentDisplayIndex],
+                            ),
                             size: 60,
                             color: AppTheme.accentGold,
                           ),
@@ -1557,7 +1575,8 @@ class _SlotReelState extends State<_SlotReel> with SingleTickerProviderStateMixi
                           alignment: Alignment.center,
                           child: Icon(
                             _getCategoryIcon(
-                              QuizCategory.values[(currentDisplayIndex + 1) % totalCategories]
+                              QuizCategory.values[(currentDisplayIndex + 1) %
+                                  totalCategories],
                             ),
                             size: 60,
                             color: AppTheme.accentGold,

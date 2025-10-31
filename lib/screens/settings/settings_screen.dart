@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/theme/app_theme.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/quiz_provider.dart';
+import '../auth/welcome_screen.dart';
 import '../legal/terms_screen.dart';
 import '../legal/privacy_policy_screen.dart';
 import '../wiki/wiki_screen.dart';
@@ -72,10 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         content: const Text(
           'Are you sure you want to reset all your progress? This action cannot be undone.',
-          style: TextStyle(
-            color: AppTheme.textGray,
-            fontSize: 14,
-          ),
+          style: TextStyle(color: AppTheme.textGray, fontSize: 14),
         ),
         actions: [
           TextButton(
@@ -106,13 +104,145 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (confirmed == true && mounted) {
       final authProvider = context.read<AuthProvider>();
       await authProvider.logout();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Progress reset successfully'),
             backgroundColor: AppTheme.success,
           ),
+        );
+      }
+    }
+  }
+
+  Future<void> _logout() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.primaryMedium,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+        ),
+        title: const Row(
+          children: [
+            Icon(Icons.logout, color: AppTheme.accentGold, size: 28),
+            SizedBox(width: 12),
+            Text(
+              'LOG OUT',
+              style: TextStyle(
+                color: AppTheme.textLight,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        content: const Text(
+          'Are you sure you want to log out? Your progress will be saved.',
+          style: TextStyle(color: AppTheme.textGray, fontSize: 14),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text(
+              'CANCEL',
+              style: TextStyle(
+                color: AppTheme.textGray,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.accentGold,
+              foregroundColor: AppTheme.primaryDark,
+            ),
+            child: const Text(
+              'LOG OUT',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      final authProvider = context.read<AuthProvider>();
+      await authProvider.logout();
+
+      if (mounted) {
+        // Navigate to welcome screen and remove all previous routes
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          (route) => false,
+        );
+      }
+    }
+  }
+
+  Future<void> _deleteProfile() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.primaryMedium,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+        ),
+        title: const Row(
+          children: [
+            Icon(Icons.delete_forever, color: AppTheme.error, size: 28),
+            SizedBox(width: 12),
+            Text(
+              'DELETE PROFILE',
+              style: TextStyle(
+                color: AppTheme.textLight,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        content: const Text(
+          'Are you sure you want to delete your profile? This will permanently delete all your data, progress, and settings. This action cannot be undone.',
+          style: TextStyle(color: AppTheme.textGray, fontSize: 14),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text(
+              'CANCEL',
+              style: TextStyle(
+                color: AppTheme.textGray,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.error,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text(
+              'DELETE',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      final authProvider = context.read<AuthProvider>();
+      await authProvider.deleteProfile();
+
+      if (mounted) {
+        // Navigate to welcome screen and remove all previous routes
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          (route) => false,
         );
       }
     }
@@ -143,10 +273,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 decoration: BoxDecoration(
                   color: AppTheme.primaryMedium,
                   borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                  border: Border.all(
-                    color: AppTheme.primaryLight,
-                    width: 1,
-                  ),
+                  border: Border.all(color: AppTheme.primaryLight, width: 1),
                 ),
                 child: Column(
                   children: [
@@ -154,7 +281,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: AppTheme.accentGold.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.sharpRadius,
+                        ),
                         border: Border.all(
                           color: AppTheme.accentGold,
                           width: 2,
@@ -209,7 +338,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         _ProfileStat(
                           label: 'UNLOCKED',
-                          value: '${user?.unlockedQuizCount ?? 3}/${context.read<QuizProvider>().allQuizzes.length}',
+                          value:
+                              '${user?.unlockedQuizCount ?? 3}/${context.read<QuizProvider>().allQuizzes.length}',
                         ),
                       ],
                     ),
@@ -230,7 +360,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.volume_up,
                 title: 'Sound Effects',
@@ -244,7 +374,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   activeColor: AppTheme.accentGold,
                 ),
               ),
-              
+
               if (_soundEnabled) ...[
                 const SizedBox(height: 12),
                 Container(
@@ -252,10 +382,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   decoration: BoxDecoration(
                     color: AppTheme.primaryMedium,
                     borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                    border: Border.all(
-                      color: AppTheme.primaryLight,
-                      width: 1,
-                    ),
+                    border: Border.all(color: AppTheme.primaryLight, width: 1),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +443,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.vibration,
                 title: 'Vibration',
@@ -344,7 +471,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.notifications,
                 title: 'Push Notifications',
@@ -372,7 +499,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.restart_alt,
                 title: 'Reset Progress',
@@ -383,6 +510,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   size: 20,
                 ),
                 onTap: _resetProgress,
+              ),
+
+              const SizedBox(height: 32),
+
+              // Account Actions
+              const Text(
+                'ACCOUNT',
+                style: TextStyle(
+                  color: AppTheme.accentGold,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              _SettingTile(
+                icon: Icons.logout,
+                title: 'Log Out',
+                subtitle: 'Sign out of your account',
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppTheme.accentGold,
+                  size: 20,
+                ),
+                onTap: _logout,
+              ),
+
+              const SizedBox(height: 12),
+
+              _SettingTile(
+                icon: Icons.delete_forever,
+                title: 'Delete Profile',
+                subtitle: 'Permanently delete your account and all data',
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppTheme.error,
+                  size: 20,
+                ),
+                onTap: _deleteProfile,
               ),
 
               const SizedBox(height: 32),
@@ -398,7 +565,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.school,
                 title: 'Quiz Wiki',
@@ -411,9 +578,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const WikiScreen(),
-                    ),
+                    MaterialPageRoute(builder: (context) => const WikiScreen()),
                   );
                 },
               ),
@@ -431,7 +596,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               _SettingTile(
                 icon: Icons.description,
                 title: 'Terms & Conditions',
@@ -485,7 +650,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               // Educational Disclaimer
               Container(
                 padding: const EdgeInsets.all(20),
@@ -533,18 +698,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: AppTheme.primaryMedium,
                   borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-                  border: Border.all(
-                    color: AppTheme.primaryLight,
-                    width: 1,
-                  ),
+                  border: Border.all(color: AppTheme.primaryLight, width: 1),
                 ),
                 child: Column(
                   children: [
@@ -628,10 +790,7 @@ class _SettingTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.primaryMedium,
           borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
-          border: Border.all(
-            color: AppTheme.primaryLight,
-            width: 1,
-          ),
+          border: Border.all(color: AppTheme.primaryLight, width: 1),
         ),
         child: Row(
           children: [
@@ -641,11 +800,7 @@ class _SettingTile extends StatelessWidget {
                 color: AppTheme.accentGold.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
               ),
-              child: Icon(
-                icon,
-                color: AppTheme.accentGold,
-                size: 24,
-              ),
+              child: Icon(icon, color: AppTheme.accentGold, size: 24),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -684,10 +839,7 @@ class _ProfileStat extends StatelessWidget {
   final String label;
   final String value;
 
-  const _ProfileStat({
-    required this.label,
-    required this.value,
-  });
+  const _ProfileStat({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

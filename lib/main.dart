@@ -10,7 +10,7 @@ import 'screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -20,13 +20,13 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
-  
+
   // Lock to portrait orientation
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  
+
   runApp(const CasinoQuizApp());
 }
 
@@ -67,7 +67,7 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
   void _navigateToHome() async {
     // Show splash screen for 3 seconds
     await Future.delayed(const Duration(seconds: 3));
-    
+
     if (mounted) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const AuthWrapper()),

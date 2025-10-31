@@ -26,7 +26,7 @@ class _CasinoBlobBackgroundState extends State<CasinoBlobBackground>
   @override
   void initState() {
     super.initState();
-    
+
     if (widget.animated) {
       _controller1 = AnimationController(
         duration: const Duration(seconds: 20),
