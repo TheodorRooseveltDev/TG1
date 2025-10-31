@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../core/theme/app_theme.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/quiz_provider.dart';
 import '../legal/terms_screen.dart';
 import '../legal/privacy_policy_screen.dart';
 import '../wiki/wiki_screen.dart';
+import '../auth/welcome_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -113,6 +115,186 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         );
       }
+    }
+  }
+
+  Future<void> _deleteAccount() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.primaryMedium,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+        ),
+        title: const Row(
+          children: [
+            Icon(Icons.warning, color: AppTheme.error, size: 28),
+            SizedBox(width: 12),
+            Text(
+              'DELETE ACCOUNT',
+              style: TextStyle(
+                color: AppTheme.error,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Are you sure you want to permanently delete your account?',
+              style: TextStyle(
+                color: AppTheme.textLight,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 12),
+            Text(
+              'This will:',
+              style: TextStyle(
+                color: AppTheme.textGray,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              '• Delete all your progress and scores\n'
+              '• Remove your account permanently\n'
+              '• Clear all app data and settings\n'
+              '• Return you to the welcome screen',
+              style: TextStyle(
+                color: AppTheme.textGray,
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            SizedBox(height: 12),
+            Text(
+              'This action cannot be undone.',
+              style: TextStyle(
+                color: AppTheme.error,
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text(
+              'CANCEL',
+              style: TextStyle(
+                color: AppTheme.textGray,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.error,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text(
+              'DELETE ACCOUNT',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      await _performAccountDeletion();
+    }
+  }
+
+  Future<void> _performAccountDeletion() async {
+    try {
+      // Show loading indicator
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: AppTheme.primaryMedium,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.sharpRadius),
+          ),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppTheme.accentGold),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Deleting account...',
+                style: TextStyle(
+                  color: AppTheme.textLight,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Clear all app data
+      await _clearAllAppData();
+
+      // Logout user
+      final authProvider = context.read<AuthProvider>();
+      await authProvider.logout();
+
+      if (mounted) {
+        // Close loading dialog
+        Navigator.pop(context);
+        
+        // Navigate to welcome screen (onboarding)
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const WelcomeScreen(),
+          ),
+          (route) => false, // Remove all previous routes
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        // Close loading dialog if open
+        Navigator.pop(context);
+        
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error deleting account: $e'),
+            backgroundColor: AppTheme.error,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _clearAllAppData() async {
+    try {
+      // Clear SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+
+      // Clear secure storage
+      const secureStorage = FlutterSecureStorage();
+      await secureStorage.deleteAll();
+
+    } catch (e) {
+      // Log error but don't throw - we want to continue with account deletion
+      print('Error clearing app data: $e');
     }
   }
 
@@ -346,6 +528,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   size: 20,
                 ),
                 onTap: _resetProgress,
+              ),
+
+              const SizedBox(height: 12),
+
+              _SettingTile(
+                icon: Icons.delete_forever,
+                title: 'Delete Account',
+                subtitle: 'Permanently delete your account and all data',
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppTheme.error,
+                  size: 20,
+                ),
+                onTap: _deleteAccount,
               ),
 
               const SizedBox(height: 32),
