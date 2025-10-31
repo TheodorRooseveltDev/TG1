@@ -42,7 +42,7 @@ class _TermsScreenState extends State<TermsScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://example.com'));
+      ..loadRequest(Uri.parse('https://casinoacademy.pro/terms/'));
   }
 
   @override

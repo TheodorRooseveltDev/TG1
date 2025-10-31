@@ -5,7 +5,7 @@ import 'core/theme/app_theme.dart';
 import 'providers/auth_provider.dart';
 import 'providers/quiz_provider.dart';
 import 'screens/auth/welcome_screen.dart';
-import 'screens/home/home_screen.dart';
+import 'screens/main_navigation.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -89,7 +89,7 @@ class AuthWrapper extends StatelessWidget {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
         if (authProvider.isAuthenticated) {
-          return const HomeScreen();
+          return const MainNavigation();
         } else {
           return const WelcomeScreen();
         }

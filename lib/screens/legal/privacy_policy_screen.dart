@@ -42,7 +42,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://example.com'));
+      ..loadRequest(Uri.parse('https://casinoacademy.pro/privacy-policy/'));
   }
 
   @override
